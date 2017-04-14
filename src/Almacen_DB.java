@@ -37,11 +37,11 @@ public class Almacen_DB {
 	}
 	
 	/*/ Metodo para reemplazar el campo 'index' de un producto por el valor de 'update'
-	 *  index : 1 : ID
-	 *  		2 : Nombre
-	 *  		3 : Marca
-	 *  		4 : Modelo
-	 *  		5 : Unidades
+	 *  index : 1 : id
+	 *  		2 : nombre
+	 *  		3 : marca
+	 *  		4 : modelo
+	 *  		5 : numero de unidades
 	 */
 	public void editar_Producto(int index, String id, String update){
 		for(String[] producto:productos){
