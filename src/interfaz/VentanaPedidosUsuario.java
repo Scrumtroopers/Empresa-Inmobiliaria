@@ -46,7 +46,7 @@ import javax.swing.border.EmptyBorder;
 							{"Celular", "Nokia", "KSJHJS",450},
 							{"Celular", "LG", "HKJS8",480},
 						};
-						Object[][] datos2 = new Object[][] {
+						Object[][] datos2 = new Object[][] {{"...", "...", "...","...","$$$"}
 						};
 						String[] nombresColumnas1 = new String[] {"Nombre", "Marca", "Modelo"," Precio"};
 						String[] nombresColumnas2 = new String[] {"Nombre", "Marca", "Modelo", "Unidades"," Precio"};
