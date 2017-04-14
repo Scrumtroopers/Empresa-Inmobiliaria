@@ -131,232 +131,154 @@
   </DataTypes>
   <Model>
     <Tables>
-      <Table name="producto">
+      <Table name="Almacen">
         <Columns>
-          <Column name="ide_producto" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="nombre_producto" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="tipo_producto" column="ide_tipo_producto" notNull="true" defaultValue="" index="1" name="tipo_producto_ide_tipo_producto" />
-        </ForeignKeys>
-        <Indexes />
-      </Table>
-      <Table name="tipo_producto">
-        <Columns>
-          <Column name="ide_tipo_producto" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="tipo_producto" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="idAlmacen" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys />
         <Indexes />
       </Table>
-      <Table name="empleado">
+      <Table name="Producto">
         <Columns>
-          <Column name="ide_empleado" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="nombre_empleado" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="idProducto" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys>
-          <ForeignKey table="cargo" column="ide_cargo" notNull="true" defaultValue="" index="1" name="cargo_ide_cargo" />
-          <ForeignKey table="empleado" column="ide_empleado" notNull="true" defaultValue="" index="2" name="empleado_ide_empleado" />
+          <ForeignKey table="TipoDeProducto" column="idTipo" notNull="true" defaultValue="" index="1" name="TipoDeProducto_idTipo" />
         </ForeignKeys>
         <Indexes />
       </Table>
-      <Table name="revision">
+      <Table name="Cliente">
         <Columns>
-          <Column name="fecha" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="producto" column="ide_producto" notNull="true" defaultValue="" index="0" name="producto_ide_producto" />
-          <ForeignKey table="empleado" column="ide_empleado" notNull="true" defaultValue="" index="1" name="empleado_ide_empleado" />
-        </ForeignKeys>
-        <Indexes />
-      </Table>
-      <Table name="venta">
-        <Columns>
-          <Column name="ide_venta" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="fecha" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
-          <Column name="hora" key="false" dataType="TIME" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="cliente" column="ide_cliente" notNull="true" defaultValue="" index="1" name="cliente_ide_cliente" />
-          <ForeignKey table="producto" column="ide_producto" notNull="true" defaultValue="" index="2" name="producto_ide_producto" />
-          <ForeignKey table="modo_de_pago" column="ide_pago" notNull="true" defaultValue="" index="3" name="modo_de_pago_ide_pago" />
-        </ForeignKeys>
-        <Indexes />
-      </Table>
-      <Table name="modo_de_pago">
-        <Columns>
-          <Column name="ide_pago" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="tipo_de_pago" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="idCliente" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys />
-        <Indexes />
-      </Table>
-      <Table name="cliente">
-        <Columns>
-          <Column name="ide_cliente" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="nombreC" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys />
-        <Indexes />
-      </Table>
-      <Table name="cargo">
-        <Columns>
-          <Column name="ide_cargo" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="tipo_de_cargo" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys />
-        <Indexes />
-      </Table>
-      <Table name="detalle_precio">
-        <Columns>
-          <Column name="ide_detalle" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="precio" key="false" dataType="INTEGER" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="producto" column="ide_producto" notNull="true" defaultValue="" index="1" name="producto_ide_producto" />
-        </ForeignKeys>
-        <Indexes />
-      </Table>
-      <Table name="oferta">
-        <Columns>
-          <Column name="ide_oferta" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="tipo_oferta" column="ide_tipo_oferta" notNull="true" defaultValue="" index="1" name="tipo_oferta_ide_tipo_oferta" />
-        </ForeignKeys>
-        <Indexes />
-      </Table>
-      <Table name="detalle_oferta">
-        <Columns>
-          <Column name="fecha _inicio" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
-          <Column name="fecha_final" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="producto" column="ide_producto" notNull="true" defaultValue="" index="0" name="producto_ide_producto" />
-          <ForeignKey table="oferta" column="ide_oferta" notNull="true" defaultValue="" index="1" name="oferta_ide_oferta" />
-        </ForeignKeys>
-        <Indexes />
-      </Table>
-      <Table name="tipo_oferta">
-        <Columns>
-          <Column name="ide_tipo_oferta" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="tipo_de_oferta" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys />
-        <Indexes />
-      </Table>
-      <Table name="proveedor">
-        <Columns>
-          <Column name="ide_proveedor" key="true" dataType="INTEGER" notNull="true" autoIncrement="false" defaultValue="" />
-          <Column name="nombre_proveedor" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="producto" column="ide_producto" notNull="true" defaultValue="" index="0" name="producto_ide_producto" />
-          <ForeignKey table="empleado" column="ide_empleado" notNull="true" defaultValue="" index="1" name="empleado_ide_empleado" />
-        </ForeignKeys>
         <Indexes />
       </Table>
       <Table name="Garantia">
         <Columns>
           <Column name="idGarantia" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="fecha" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
-          <Column name="fecha_expiracion" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="fechaInicio" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="fechaLimite" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys>
-          <ForeignKey table="producto" column="ide_producto" notNull="true" defaultValue="" index="1" name="producto_ide_producto" />
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
         </ForeignKeys>
         <Indexes />
       </Table>
-      <Table name="telefono">
+      <Table name="TipoDeProducto">
         <Columns>
-          <Column name="idTelefono" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="numero" key="false" dataType="INTEGER" notNull="false" autoIncrement="false" defaultValue="" />
-        </Columns>
-        <ForeignKeys>
-          <ForeignKey table="cliente" column="ide_cliente" notNull="true" defaultValue="" index="1" name="cliente_ide_cliente" />
-        </ForeignKeys>
-        <Indexes />
-      </Table>
-      <Table name="Deposito">
-        <Columns>
-          <Column name="idDeposito" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
-          <Column name="nombreDeposito" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="idTipo" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="tipo" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys />
         <Indexes />
       </Table>
-      <Table name="inventario">
+      <Table name="Telefono">
+        <Columns>
+          <Column name="idTelefono" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="numero" key="false" dataType="INTEGER" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Cliente" column="idCliente" notNull="true" defaultValue="" index="1" name="Cliente_idCliente" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Pedido">
+        <Columns>
+          <Column name="direccion" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Cliente" column="idCliente" notNull="true" defaultValue="" index="0" name="Cliente_idCliente" />
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Inventario">
         <Columns>
           <Column name="cantidad" key="false" dataType="INTEGER" notNull="true" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys>
-          <ForeignKey table="Deposito" column="idDeposito" notNull="true" defaultValue="" index="0" name="Deposito_idDeposito" />
-          <ForeignKey table="producto" column="ide_producto" notNull="true" defaultValue="" index="1" name="producto_ide_producto" />
+          <ForeignKey table="Almacen" column="idAlmacen" notNull="true" defaultValue="" index="0" name="Almacen_idAlmacen" />
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
         </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Empleado">
+        <Columns>
+          <Column name="idEmpleado" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Cargo" column="idCargo" notNull="true" defaultValue="" index="1" name="Cargo_idCargo" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Venta">
+        <Columns>
+          <Column name="idVenta" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="total" key="false" dataType="FLOAT" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="fecha" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
+          <ForeignKey table="Cliente" column="idCliente" notNull="true" defaultValue="" index="2" name="Cliente_idCliente" />
+          <ForeignKey table="Empleado" column="idEmpleado" notNull="true" defaultValue="" index="3" name="Empleado_idEmpleado" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Cargo">
+        <Columns>
+          <Column name="idCargo" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="cargo" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
         <Indexes />
       </Table>
     </Tables>
     <Relations>
-      <Relation name="es de un" source="tipo_producto" destination="producto" kind="1n_non_id" start="true" definition="false" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="producto" destination="revision" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="producto" destination="venta" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="requiere un" source="modo_de_pago" destination="venta" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="requiere" source="cliente" destination="venta" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="jefe" source="empleado" destination="empleado" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
-      <Relation name="realiza" source="empleado" destination="revision" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene un" source="cargo" destination="empleado" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="producto" destination="detalle_oferta" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="oferta" destination="detalle_oferta" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="tipo_oferta" destination="oferta" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="producto" destination="proveedor" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="empleado" destination="proveedor" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="producto" destination="detalle_precio" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="producto" destination="Garantia" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="cliente" destination="telefono" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="Deposito" destination="inventario" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="tiene" source="producto" destination="inventario" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="hace" source="Cliente" destination="Pedido" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Producto" destination="Pedido" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Cliente" destination="Telefono" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es de un" source="TipoDeProducto" destination="Producto" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Producto" destination="Garantia" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Almacen" destination="Inventario" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte de un" source="Producto" destination="Inventario" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte de un" source="Cargo" destination="Empleado" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
+      <Relation name="Rel_9" source="Empleado" destination="Venta" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte" source="Cliente" destination="Venta" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte de un" source="Producto" destination="Venta" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
     </Relations>
   </Model>
   <Diagram>
     <Shapes>
       <Tables>
-        <Table table="venta" x="324" y="214" />
-        <Table table="cliente" x="381" y="47" />
-        <Table table="Garantia" x="32" y="690" />
-        <Table table="detalle_precio" x="2" y="412" />
-        <Table table="tipo_producto" x="310" y="608" />
-        <Table table="detalle_oferta" x="381" y="724" />
-        <Table table="oferta" x="700" y="739" />
-        <Table table="tipo_oferta" x="1043" y="740" />
-        <Table table="telefono" x="65" y="41" />
-        <Table table="modo_de_pago" x="61" y="252" />
-        <Table table="revision" x="664" y="560" />
-        <Table table="Deposito" x="721" y="90" />
-        <Table table="producto" x="305" y="422" />
-        <Table table="inventario" x="694" y="257" />
-        <Table table="empleado" x="1096" y="423" />
-        <Table table="cargo" x="1137" y="269" />
-        <Table table="proveedor" x="743" y="410" />
+        <Table table="Inventario" x="992" y="314" />
+        <Table table="Almacen" x="1033" y="160" />
+        <Table table="Producto" x="603" y="315" />
+        <Table table="Garantia" x="569" y="36" />
+        <Table table="TipoDeProducto" x="703" y="147" />
+        <Table table="Cargo" x="407" y="109" />
+        <Table table="Pedido" x="608" y="578" />
+        <Table table="Empleado" x="117" y="101" />
+        <Table table="Venta" x="94" y="289" />
+        <Table table="Cliente" x="149" y="583" />
+        <Table table="Telefono" x="111" y="724" />
       </Tables>
       <Relations>
-        <Relation source="cliente" destination="venta" division="0.5" />
-        <Relation source="empleado" destination="empleado" division="1.0" />
-        <Relation source="producto" destination="venta" division="0.5" />
-        <Relation source="modo_de_pago" destination="venta" division="0.5" />
-        <Relation source="oferta" destination="detalle_oferta" division="0.5084745762711864" />
-        <Relation source="tipo_producto" destination="producto" division="0.5" />
-        <Relation source="producto" destination="detalle_precio" division="0.5" />
-        <Relation source="tipo_oferta" destination="oferta" division="0.5" />
-        <Relation source="producto" destination="proveedor" division="0.5" />
-        <Relation source="producto" destination="Garantia" division="0.9090909090909091" />
-        <Relation source="producto" destination="detalle_oferta" division="0.35057471264367857" />
-        <Relation source="cliente" destination="telefono" division="0.5081967213114754" />
-        <Relation source="empleado" destination="proveedor" division="0.5238095238095238" />
-        <Relation source="producto" destination="revision" division="0.5" />
-        <Relation source="cargo" destination="empleado" division="0.5" />
-        <Relation source="Deposito" destination="inventario" division="0.5" />
-        <Relation source="producto" destination="inventario" division="0.5" />
-        <Relation source="empleado" destination="revision" division="0.5" />
+        <Relation source="Producto" destination="Pedido" division="0.5084745762711864" />
+        <Relation source="Almacen" destination="Inventario" division="0.5" />
+        <Relation source="Producto" destination="Inventario" division="0.5" />
+        <Relation source="Empleado" destination="Venta" division="0.5" />
+        <Relation source="Cliente" destination="Pedido" division="0.5" />
+        <Relation source="Cliente" destination="Telefono" division="0.5" />
+        <Relation source="Producto" destination="Garantia" division="0.2945708329556782" />
+        <Relation source="Cargo" destination="Empleado" division="0.5" />
+        <Relation source="Cliente" destination="Venta" division="0.5" />
+        <Relation source="Producto" destination="Venta" division="0.5025606469002697" />
+        <Relation source="TipoDeProducto" destination="Producto" division="0.5175654853620955" />
       </Relations>
       <Regions />
     </Shapes>
