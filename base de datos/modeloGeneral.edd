@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<easyDesigner>
+  <DataTypes default="INTEGER">
+    <DataType name="SMALLINT" group="numeric" description="A small integer. The signed range is -32768 to 32767. The unsigned &#xA;range is 0 to 65535.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="UNSIGNED" checked="true" />
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="INTEGER" group="numeric" description="A normal-size integer. The signed range is -2147483648 to &#xA;2147483647. The unsigned range is 0 to 4294967295.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="UNSIGNED" checked="true" />
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="BIGINT" group="numeric" description="A large integer. The signed range is -9223372036854775808 to &#xA;9223372036854775807. The unsigned range is 0 to &#xA;18446744073709551615.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="UNSIGNED" checked="false" />
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="FLOAT" group="numeric" description="A small (single-precision) floating-point number. Cannot be unsigned. &#xA;Allowable values are -3.402823466E+38 to -1.175494351E-38, 0, and &#xA;1.175494351E-38 to 3.402823466E+38.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="DOUBLE" group="numeric" description="A normal-size (double-precision) floating-point number. Cannot be &#xA;unsigned. Allowable values are -1.7976931348623157E+308 to &#xA;-2.2250738585072014E-308, 0, and 2.2250738585072014E-308 to &#xA;1.7976931348623157E+308.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="DECIMAL" group="numeric" description="An unpacked floating-point number. Cannot be unsigned. Behaves like &#xA;a CHAR column.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="NUMERIC" group="numeric" description="This is a synonym for DECIMAL.">
+      <Parameters paramsRequired="true">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="DATE" group="date_time" description="A date. The supported range is '1000-01-01' to '9999-12-31'.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="DATETIME" group="date_time" description="A date and time combination. The supported range is '1000-01-01 &#xA;00:00:00' to '9999-12-31 23:59:59'.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="TIMESTAMP" group="date_time" description="A timestamp. The range is '1970-01-01 00:00:00' to sometime in the &#xA;year 2037. The length can be 14 (or missing), 12, 10, 8, 6, 4, or 2 &#xA;representing YYYYMMDDHHMMSS, ... , YYYYMMDD, ... , YY formats.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options />
+    </DataType>
+    <DataType name="TIME" group="date_time" description="A time. The range is '-838:59:59' to '838:59:59'.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="YEAR" group="date_time" description="A year in 2- or 4-digit format (default is 4-digit).">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options />
+    </DataType>
+    <DataType name="CHAR" group="string" description="A fixed-length string (1 to 255 characters) that is always right-padded &#xA;with spaces to the specified length when stored. values are sorted and &#xA;compared in case-insensitive fashion according to the default character &#xA;set unless the BINARY keyword is given.">
+      <Parameters paramsRequired="true">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="BINARY" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="VARCHAR" group="string" description="A variable-length string (1 to 255 characters). Values are sorted and &#xA;compared in case-sensitive fashion unless the BINARY keyword is &#xA;given.">
+      <Parameters paramsRequired="true">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="BINARY" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="BIT" group="string" description="This is a synonym for CHAR(1).">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="BOOL" group="string" description="This is a synonym for CHAR(1).">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="BLOB" group="blob_text" description="A column maximum length of 65535 (2^16 - 1) characters. Values are &#xA;sorted and compared in case-sensitive fashion.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="POLYGON" group="geographic" description="Geographic Datatype">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="KOPYTKO" group="user" description="Co mi tu Pan napisał?">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="VARCHAR(255)" group="user" description="">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+  </DataTypes>
+  <Model>
+    <Tables>
+      <Table name="Almacen">
+        <Columns>
+          <Column name="idAlmacen" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="Producto">
+        <Columns>
+          <Column name="idProducto" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="TipoDeProducto" column="idTipo" notNull="true" defaultValue="" index="1" name="TipoDeProducto_idTipo" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Cliente">
+        <Columns>
+          <Column name="idCliente" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="Garantia">
+        <Columns>
+          <Column name="idGarantia" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="fechaInicio" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="fechaLimite" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="TipoDeProducto">
+        <Columns>
+          <Column name="idTipo" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="tipo" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="Telefono">
+        <Columns>
+          <Column name="idTelefono" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="numero" key="false" dataType="INTEGER" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Cliente" column="idCliente" notNull="true" defaultValue="" index="1" name="Cliente_idCliente" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Pedido">
+        <Columns>
+          <Column name="direccion" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Cliente" column="idCliente" notNull="true" defaultValue="" index="0" name="Cliente_idCliente" />
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Inventario">
+        <Columns>
+          <Column name="cantidad" key="false" dataType="INTEGER" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Almacen" column="idAlmacen" notNull="true" defaultValue="" index="0" name="Almacen_idAlmacen" />
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Empleado">
+        <Columns>
+          <Column name="idEmpleado" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="nombre" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Cargo" column="idCargo" notNull="true" defaultValue="" index="1" name="Cargo_idCargo" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Venta">
+        <Columns>
+          <Column name="idVenta" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="total" key="false" dataType="FLOAT" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="fecha" key="false" dataType="DATE" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="Producto" column="idProducto" notNull="true" defaultValue="" index="1" name="Producto_idProducto" />
+          <ForeignKey table="Cliente" column="idCliente" notNull="true" defaultValue="" index="2" name="Cliente_idCliente" />
+          <ForeignKey table="Empleado" column="idEmpleado" notNull="true" defaultValue="" index="3" name="Empleado_idEmpleado" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="Cargo">
+        <Columns>
+          <Column name="idCargo" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="cargo" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+    </Tables>
+    <Relations>
+      <Relation name="hace" source="Cliente" destination="Pedido" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Producto" destination="Pedido" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Cliente" destination="Telefono" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es de un" source="TipoDeProducto" destination="Producto" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Producto" destination="Garantia" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="tiene" source="Almacen" destination="Inventario" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte de un" source="Producto" destination="Inventario" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte de un" source="Cargo" destination="Empleado" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
+      <Relation name="Rel_9" source="Empleado" destination="Venta" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte" source="Cliente" destination="Venta" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="es parte de un" source="Producto" destination="Venta" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
+    </Relations>
+  </Model>
+  <Diagram>
+    <Shapes>
+      <Tables>
+        <Table table="Inventario" x="992" y="314" />
+        <Table table="Almacen" x="1033" y="160" />
+        <Table table="Producto" x="603" y="315" />
+        <Table table="Garantia" x="569" y="36" />
+        <Table table="TipoDeProducto" x="703" y="147" />
+        <Table table="Cargo" x="407" y="109" />
+        <Table table="Pedido" x="608" y="578" />
+        <Table table="Empleado" x="117" y="101" />
+        <Table table="Venta" x="94" y="289" />
+        <Table table="Cliente" x="149" y="583" />
+        <Table table="Telefono" x="111" y="724" />
+      </Tables>
+      <Relations>
+        <Relation source="Producto" destination="Pedido" division="0.5084745762711864" />
+        <Relation source="Almacen" destination="Inventario" division="0.5" />
+        <Relation source="Producto" destination="Inventario" division="0.5" />
+        <Relation source="Empleado" destination="Venta" division="0.5" />
+        <Relation source="Cliente" destination="Pedido" division="0.5" />
+        <Relation source="Cliente" destination="Telefono" division="0.5" />
+        <Relation source="Producto" destination="Garantia" division="0.2945708329556782" />
+        <Relation source="Cargo" destination="Empleado" division="0.5" />
+        <Relation source="Cliente" destination="Venta" division="0.5" />
+        <Relation source="Producto" destination="Venta" division="0.5025606469002697" />
+        <Relation source="TipoDeProducto" destination="Producto" division="0.5175654853620955" />
+      </Relations>
+      <Regions />
+    </Shapes>
+  </Diagram>
+  <Viewport zoom="1.0" x="0" y="0" />
+</easyDesigner>
+
