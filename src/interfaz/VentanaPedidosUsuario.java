@@ -93,7 +93,7 @@ import javax.swing.border.EmptyBorder;
 			nombUser.setBounds(55, 5, 135, 25);
 			contentPane.add(nombUser);
 			
-			titulo = new JLabel("Almacen Sacaba");
+			titulo = new JLabel("Nuevo Pedido");
 			titulo.setHorizontalAlignment(SwingConstants.CENTER);
 			titulo.setFont(new Font("Century Gothic", Font.BOLD, 18));
 			titulo.setBounds(250, 30, 180, 30);
