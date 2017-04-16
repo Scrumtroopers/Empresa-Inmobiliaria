@@ -122,17 +122,17 @@ public class LogIn extends JFrame {
 	
 	void log(){
 		Usuario user = BD.bd.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
-		System.out.println(user.getNickname());
-		System.out.println(user.getCategoria());
+		//System.out.println(user.getNickname());
+		//System.out.println(user.getCategoria());
+		dispose();
 		if (user.getCategoria().equals("ADMINISTRADOR_ALMACEN")){
-			dispose();
 			if(VentanaRegistroAlmacenes.ventana == null)
 				VentanaRegistroAlmacenes.ventana = new VentanaRegistroAlmacenes();
 			VentanaRegistroAlmacenes.ventana.setVisible(true);
 		}
 		else{
 			if (user.getCategoria().equals("EMPLEADO")){
-				
+				// llamar a ventana pedidos
 			}
 		}
 	}
