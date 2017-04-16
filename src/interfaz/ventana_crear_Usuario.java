@@ -9,11 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Datos.BD;
+import Datos.Usuario;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
@@ -176,13 +179,14 @@ public class ventana_crear_Usuario extends JFrame {
         String dia = (String) spinnerDia.getValue();
         String mes = (String) spinnerMes.getValue();
         String anio = (String) spinnerAno.getValue();
-
-        String fecha = anio + "-" + mes + "-" + dia;
+        Date fecha = new Date(Integer.parseInt(anio), Integer.parseInt(mes), Integer.parseInt(dia));
         String sexo = (String) spinnerSexo.getValue();
+        
         String cargo = (String) spinnerCategoria.getValue();
-        if (BD.disponibleUsuario(nickname)) {
-            String[] usuario = {nickname, nombre, apellidoP, apellidoM, clave, fecha, sexo, cargo};
-            BD.guardarUsuario(usuario);
+        if (BD.bd.disponibleUsuario(nickname)) {
+        	Usuario nuevo = new Usuario(nickname, nombre, apellidoP, apellidoM, clave, fecha, sexo, cargo);
+            //String[] usuario = {nickname, nombre, apellidoP, apellidoM, clave, fecha, sexo, cargo};
+            BD.bd.guardarUsuario(nuevo);
             JOptionPane.showMessageDialog(null, "REGISTRO SATISFACTORIAMENTE", " ", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             LogIn.init();

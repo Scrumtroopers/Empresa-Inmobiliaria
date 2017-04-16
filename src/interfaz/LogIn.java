@@ -121,9 +121,9 @@ public class LogIn extends JFrame {
 	}
 	
 	void log(){
-		Usuario user = BD.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
-		System.out.println(user.getNickname());
-		System.out.println(user.getCategoria());
+		//Usuario user = BD.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
+		//System.out.println(user.getNickname());
+		//System.out.println(user.getCategoria());
 		
 		/*if (user.getCategoria().toString().equals("ADMINISTRADOR_ALMACEN")){
 			dispose();

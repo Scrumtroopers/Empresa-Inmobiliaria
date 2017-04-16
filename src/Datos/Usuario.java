@@ -19,10 +19,10 @@ public class Usuario implements Serializable{
     private String apellidoMaterno;
     private String clave;
     private Date fechaNacimiento;
-    private Sexo sexo;
+    private String sexo;
     private String categoria;
 
-    public Usuario(String nickname, String nombre, String apellidoPaterno, String apellidoMaterno, String clave, Date fechaNacimiento, Sexo sexo, String categoria) {
+    public Usuario(String nickname, String nombre, String apellidoPaterno, String apellidoMaterno, String clave, Date fechaNacimiento, String sexo, String categoria) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -83,11 +83,11 @@ public class Usuario implements Serializable{
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Sexo getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Sexo sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

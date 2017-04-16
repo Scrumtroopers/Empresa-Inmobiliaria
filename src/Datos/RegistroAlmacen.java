@@ -16,10 +16,10 @@ public class RegistroAlmacen implements Serializable, DatoTabla{
 	private Producto producto; //Producto afectado
 	private Usuario usuarioResponsable; //Usuario responsable del movimiento
 	private int unidadesAfectadas; // Las unidades afectadas
-	private TipoAccionRegistro tipoAccion; //Venta, Compra, eliminacion, agregacion
+	private String tipoAccion; //Venta, Compra, eliminacion, agregacion
 
 	
-	public RegistroAlmacen(Almacen almacen, Producto producto, Usuario usuarioResponsable, int unidadesAfectadas, TipoAccionRegistro tipoAccion){
+	public RegistroAlmacen(Almacen almacen, Producto producto, Usuario usuarioResponsable, int unidadesAfectadas, String tipoAccion){
 		this.almacen = almacen;
 		this.producto = producto;
 		this.usuarioResponsable = usuarioResponsable;
