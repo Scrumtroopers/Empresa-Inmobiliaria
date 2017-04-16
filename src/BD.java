@@ -62,7 +62,7 @@ public class BD {
         Categoria categoria = null;
         switch (user[7]) {
             case "Administrador":
-                categoria = Categoria.ADMINITRADOR;
+                categoria = Categoria.ADMINISTRADOR;
                 break;
             case "Empleado":
                 categoria = Categoria.EMPLEADO;
