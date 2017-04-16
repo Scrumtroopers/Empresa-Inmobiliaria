@@ -110,6 +110,14 @@ public class BD implements Serializable{
     public ArrayList<Producto> getProducto(){
         return productos;
     }
+    
+    public void eliminarProducto(String nombre, String marca, String modelo){
+    	for(Producto producto : productos){
+    		if(producto.getNombre().equals(nombre) && producto.getMarca().equals(marca) && producto.getModelo().equals(modelo)){
+    			productos.remove(producto);
+    		}
+    	}
+    }
 
     //*********************FIN de operaciones de PRODUCTO*****************************
     
@@ -122,6 +130,17 @@ public class BD implements Serializable{
     public ArrayList<Almacen> getAlamacenes(){
         return almacenes;
     }
+    
+    
+    public void eliminarAlmacen(String nombre){
+    	for(Almacen almacen : almacenes){
+    		if(almacen.getNombre().equals(nombre)){
+    			almacenes.remove(almacen);
+    		}
+    	}
+    	
+    }
+    
      //*********************FIN de operaciones de ALMACEN*****************************
     
     //********************** Registro Almacenes************************************
