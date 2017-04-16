@@ -30,7 +30,7 @@ import javax.swing.border.EmptyBorder;
 		private JButton botonBuscar;
 		private JButton botonAnadir;
 		private JButton botonQuitar;
-		private JButton botonEditar;
+		private JButton botonNUsuario;
 		private JButton botonCerrarSecion;
 		private JButton botonRealizarPedido;
 		private JButton botonCancelarPedido;
@@ -160,17 +160,17 @@ import javax.swing.border.EmptyBorder;
 			});
 			contentPane.add(botonQuitar);
 			
-			botonEditar = new JButton();
-			//botonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/editar.png")));
-			botonEditar.setBounds(180, 350, 50, 30);
-			botonEditar.setBackground(new Color(245, 245, 245));
-			botonEditar.addActionListener(new ActionListener() {
+			botonNUsuario = new JButton();
+			//botonNUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/newUser.png")));
+			botonNUsuario.setBounds(180, 350, 50, 30);
+			botonNUsuario.setBackground(new Color(245, 245, 245));
+			botonNUsuario.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					editarProducto();
+					nuevoUsuario();
 					
 				}
 			});
-			contentPane.add(botonEditar);
+			contentPane.add(botonNUsuario);
 			
 			pagar = new JLabel("Pagar:");
 			pagar.setHorizontalAlignment(SwingConstants.LEFT);
@@ -224,7 +224,7 @@ import javax.swing.border.EmptyBorder;
 		
 	}
 	
-	private void editarProducto(){
+	private void nuevoUsuario(){
 		
 	}
 	
