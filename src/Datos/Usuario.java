@@ -20,9 +20,9 @@ public class Usuario implements Serializable{
     private String clave;
     private Date fechaNacimiento;
     private Sexo sexo;
-    private Categoria categoria;
+    private String categoria;
 
-    public Usuario(String nickname, String nombre, String apellidoPaterno, String apellidoMaterno, String clave, Date fechaNacimiento, Sexo sexo, Categoria categoria) {
+    public Usuario(String nickname, String nombre, String apellidoPaterno, String apellidoMaterno, String clave, Date fechaNacimiento, Sexo sexo, String categoria) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -91,11 +91,11 @@ public class Usuario implements Serializable{
         this.sexo = sexo;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
     

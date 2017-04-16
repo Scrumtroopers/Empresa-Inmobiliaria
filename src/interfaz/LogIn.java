@@ -12,7 +12,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import Datos.BD;
-import Datos.Categoria;
 import Datos.Usuario;
 
 import java.awt.event.ActionListener;

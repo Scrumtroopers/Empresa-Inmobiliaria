@@ -60,13 +60,13 @@ public class BD {
             sexo = Sexo.MASCULINO;
         }
 
-        Categoria categoria = null;
+        String categoria = "";
         switch (user[7]) {
             case "Administrador":
-                categoria = Categoria.ADMINISTRADOR_ALMACEN;
+                categoria = "ADMINISTRADOR_ALMACEN";
                 break;
             case "Empleado":
-                categoria = Categoria.EMPLEADO;
+                categoria = "EMPLEADO";
                 break;
         }
 
