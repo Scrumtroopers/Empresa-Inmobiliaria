@@ -3,11 +3,11 @@ package Datos;
 import java.io.Serializable;
 
 /**
-*
+* Esta clase es el modelo del Producto que se guardara en la Base de Datos general
 * @author Bernardo
 */
 
-public class Producto implements Serializable{
+public class Producto implements Serializable, DatoTabla{
 	
 	private int unidades; //Unidades totales del producto
 	private String nombre; 
@@ -58,4 +58,32 @@ public class Producto implements Serializable{
 	public void quitarUnidades(int num){
 		unidades -= num;
 	}
+	
+	/**
+ 	 * @return Devuelve una representacion en String de la instancia
+	 */
+	@Override
+	public String toString(){
+		return nombre+" "+marca+" "+modelo;
+	}
+
+	/**
+ 	 * @return Devuelve los nombres de los atributos de esta clase
+	 */
+	@Override
+	public String[] getNombresVariables() {
+		String[] nombres = {"Nombre", "Marca", "Modelo", "Precio Venta", "Precio Compra", "Unidades", "Almacen"};
+		return nombres;
+	}
+
+	/**
+ 	 * @return Devuelve los valores de los atributos de esta clase
+	 */
+	@Override
+	public Object[] getValores() {
+		Object[] valores = {nombre, marca, modelo, precioVenta, precioCompra, unidades, almacen.toString()};
+		return valores;
+	}
+	
+	
 }

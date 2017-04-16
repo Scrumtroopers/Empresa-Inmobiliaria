@@ -3,11 +3,11 @@ package Datos;
 import java.io.Serializable;
 
 /**
-*
+* Esta clase es el modelo que representa a un Almacen
 * @author Bernardo
 */
 
-public class Almacen implements Serializable {
+public class Almacen implements Serializable, DatoTabla {
 	
 	private String nombre; //Nombre del almacen
 	private String direccion; //Direccion del almacen
@@ -29,5 +29,31 @@ public class Almacen implements Serializable {
 	
 	public String getTelefono(){
 		return telefono;
+	}
+	
+	/**
+ 	 * @return Devuelve una representacion en String de la instancia
+	 */
+	@Override
+	public String toString(){
+		return nombre;
+	}
+
+	/**
+ 	 * @return Devuelve los nombres de los atributos de esta clase
+	 */
+	@Override
+	public String[] getNombresVariables() {
+		String[] nombres = {"Nombre", "Direccion", "Telefono"};
+		return nombres;
+	}
+
+	/**
+ 	 * @return Devuelve los valores de los atributos de esta clase
+	 */
+	@Override
+	public Object[] getValores() {
+		Object[] valores = {nombre, direccion, telefono};
+		return valores;
 	}
 }

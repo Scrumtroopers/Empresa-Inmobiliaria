@@ -8,6 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import Datos.Almacen;
+import Datos.DatoTabla;
+import Datos.Producto;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -16,8 +21,13 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
+/**
+* Esta ventana es la vista de un almacen en especifico
+* @author Bernardo
+*/
 public class VentanaAlmacen extends JFrame {
 
 	private JPanel contentPane;
@@ -29,21 +39,15 @@ public class VentanaAlmacen extends JFrame {
 	private JButton botonSalir;
 	private JButton botonEliminar;
 	
+	
+	//Este Main es solo prueba
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Object[][] datos = new Object[][] {
-						{504, "Laptop", "Toshiba", "5DHGS", 1},
-						{1001, "Lavadora", "Patinar", "XGAH", 2},
-						{250, "Television", "Escalar", "SHUJHA", 5},
-						{320, "Celular", "Correr", "KSJHJS", 1},
-						{600, "Auto", "Nadar", "HKJS8", 10},
-					};
-					String[] nombresColumnas = new String[] {
-							"ID Producto", "Nombre", "Marca", "Modelo", "Unidades"
-						};
-					VentanaAlmacen frame = new VentanaAlmacen(datos, nombresColumnas, "Almacen Sacaba");
+					ArrayList<Producto> prod = new ArrayList<Producto>();
+					prod.add(new Producto(10, "Laptop", "HP", "SJHDJK", 1000, 1000, new Almacen("Sacaba", "KM 10", "444")));
+					VentanaAlmacen frame = new VentanaAlmacen(prod, "Almacen Sacaba");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +56,13 @@ public class VentanaAlmacen extends JFrame {
 		});
 	}
 	
-	public VentanaAlmacen(Object[][] datos, String[] nombresColumnas, String txtTitulo) {
+	/**
+	 * Constructor
+	 * 
+	 * @param productos son los datos que contendra la tabla
+	 * @param txtTitulo el titulo de la ventana
+	 */
+	public VentanaAlmacen(ArrayList<? extends DatoTabla> productos, String txtTitulo) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 680, 480);
@@ -70,7 +80,7 @@ public class VentanaAlmacen extends JFrame {
 		tablaProductos = new JTable();
 		tablaProductos.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		tablaProductos.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ModeloTabla modelo = new ModeloTabla(datos, nombresColumnas);
+		ModeloTabla modelo = new ModeloTabla(productos);
 		tablaProductos.setModel(modelo);
 		
 		tablaProductos.setBounds(10, 52, 654, 311);
