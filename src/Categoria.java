@@ -9,6 +9,6 @@
  * @author ariel
  */
 public enum Categoria {
-    ADMINITRADOR,
+    ADMINISTRADOR,
     EMPLEADO;
 }
