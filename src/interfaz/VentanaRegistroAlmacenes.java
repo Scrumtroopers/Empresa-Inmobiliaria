@@ -32,6 +32,7 @@ public class VentanaRegistroAlmacenes extends JFrame {
 	private ModeloTabla modeloTabla;
 	
 	private JButton botonAbrirAlmacen;
+	private JButton botonNuevoAlmacen;
 
 
 	/**
@@ -70,6 +71,15 @@ public class VentanaRegistroAlmacenes extends JFrame {
 			}
 		});
 		contentPane.add(botonAbrirAlmacen);
+		
+		
+		botonNuevoAlmacen = nuevoBoton(356, 411, "Nuevo Almacen");
+		botonNuevoAlmacen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NuevoAlmacen();
+			}
+		});
+		contentPane.add(botonNuevoAlmacen);
 	}
 	
 	private JButton nuevoBoton(int x, int y, String txt){
@@ -78,6 +88,19 @@ public class VentanaRegistroAlmacenes extends JFrame {
 		boton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		boton.setBounds(x, y, 150, 30);
 		return boton;
+	}
+	
+	private void NuevoAlmacen(){
+		if(VentanaNuevoAlmacen.ventana != null && VentanaNuevoAlmacen.ventana.isVisible()){
+			VentanaNuevoAlmacen.ventana.setVisible(false);
+		}
+		VentanaNuevoAlmacen.ventana = new VentanaNuevoAlmacen();
+		VentanaNuevoAlmacen.ventana.setVisible(true);
+	}
+	
+	public void actualizarTabla(){
+		modeloTabla = new ModeloTabla(BD.bd.getAlamacenes());
+		this.tablaRegistro.setModel(modeloTabla);
 	}
 	
 	private void AbrirAlmacen(){

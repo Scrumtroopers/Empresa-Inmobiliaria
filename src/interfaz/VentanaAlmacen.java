@@ -15,6 +15,8 @@ import Datos.DatoTabla;
 import Datos.Producto;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
@@ -36,6 +38,8 @@ public class VentanaAlmacen extends JFrame {
 	private JPanel contentPane;
 	private JTable tablaProductos;
 	private JLabel titulo;
+	
+	private ModeloTabla modeloTabla;
 	
 	private JButton botonAgregar;
 	private JButton botonSalir;
@@ -112,8 +116,8 @@ public class VentanaAlmacen extends JFrame {
 				seleccionados.add(p);
 			}
 		}
-		ModeloTabla modelo = new ModeloTabla(productos);
-		tablaProductos.setModel(modelo);
+		modeloTabla = new ModeloTabla(seleccionados);
+		tablaProductos.setModel(modeloTabla);
 	}
 	
 	private JButton nuevoBoton(int x, int y, String txt){
@@ -133,10 +137,30 @@ public class VentanaAlmacen extends JFrame {
 	}
 	
 	private void eliminarProducto(){
-		
+		int i = tablaProductos.getSelectedRow();
+		if(i != -1){
+			Object[] fila = modeloTabla.getFila(i);
+			ArrayList<Producto> productos = BD.bd.getProducto();
+			Producto encontrado = null;
+			int j = 0;
+			while(j < productos.size() && encontrado == null){
+				if(productos.get(i).compararValores(fila)){
+					encontrado = productos.get(i);
+				}
+				j++;
+			}
+			if(encontrado != null){
+				//BD.bd.Metodo para eliminar
+				JOptionPane.showMessageDialog(this, "Producto Eliminado");
+				actualizarTabla();
+			}
+			else{
+				JOptionPane.showMessageDialog(this, "Debe seleccionar un producto");
+			}
+		}
 	}
 	
 	private void salir(){
-		
+		this.setVisible(false);
 	}
 }
