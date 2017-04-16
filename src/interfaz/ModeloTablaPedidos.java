@@ -1,4 +1,4 @@
-package ventanaPedidos;
+package interfaz;
 
 import javax.swing.table.DefaultTableModel;
 

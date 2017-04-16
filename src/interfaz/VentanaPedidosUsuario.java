@@ -1,4 +1,4 @@
-package ventanaPedidos;
+package interfaz;
 
 import java.awt.Color;
 import java.awt.EventQueue;
