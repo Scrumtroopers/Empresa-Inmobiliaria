@@ -74,4 +74,10 @@ public class RegistroAlmacen implements Serializable, DatoTabla{
 		return vals;
 	}
 
+	@Override
+	public boolean compararValores(Object[] valores) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

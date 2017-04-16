@@ -84,6 +84,12 @@ public class Producto implements Serializable, DatoTabla{
 		Object[] valores = {nombre, marca, modelo, precioVenta, precioCompra, unidades, almacen.toString()};
 		return valores;
 	}
+
+	@Override
+	public boolean compararValores(Object[] valores) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }

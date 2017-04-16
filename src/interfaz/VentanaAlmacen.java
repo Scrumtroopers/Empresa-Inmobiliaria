@@ -30,6 +30,8 @@ import java.awt.event.ActionEvent;
 */
 public class VentanaAlmacen extends JFrame {
 
+	public static VentanaAlmacen ventana;
+	
 	private JPanel contentPane;
 	private JTable tablaProductos;
 	private JLabel titulo;
@@ -39,23 +41,6 @@ public class VentanaAlmacen extends JFrame {
 	private JButton botonSalir;
 	private JButton botonEliminar;
 	
-	
-	//Este Main es solo prueba
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ArrayList<Producto> prod = new ArrayList<Producto>();
-					prod.add(new Producto(10, "Laptop", "HP", "SJHDJK", 1000, 1000, new Almacen("Sacaba", "KM 10", "444")));
-					VentanaAlmacen frame = new VentanaAlmacen(prod, "Almacen Sacaba");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	/**
 	 * Constructor
 	 * 
@@ -64,7 +49,7 @@ public class VentanaAlmacen extends JFrame {
 	 */
 	public VentanaAlmacen(ArrayList<? extends DatoTabla> productos, String txtTitulo) {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 680, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

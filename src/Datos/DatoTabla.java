@@ -9,4 +9,5 @@ public interface DatoTabla {
 	public String[] getNombresVariables(); //Obtiene los nombres de los atributos de la clase
 	public Object[] getValores(); //Obtiene los valores de los atributos de la clase
 	public String toString(); //Obtiene una representacion del objeto en String
+	public boolean compararValores(Object[] valores);
 }

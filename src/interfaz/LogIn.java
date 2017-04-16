@@ -126,9 +126,9 @@ public class LogIn extends JFrame {
 		System.out.println(user.getCategoria());
 		if (user.getCategoria().equals("ADMINISTRADOR_ALMACEN")){
 			dispose();
-			System.out.print(user.getNombre());
-			VentanaAlmacen.main(null);
-			//aca aclopar
+			if(VentanaRegistroAlmacenes.ventana == null)
+				VentanaRegistroAlmacenes.ventana = new VentanaRegistroAlmacenes();
+			VentanaRegistroAlmacenes.ventana.setVisible(true);
 		}
 		else{
 			if (user.getCategoria().equals("EMPLEADO")){

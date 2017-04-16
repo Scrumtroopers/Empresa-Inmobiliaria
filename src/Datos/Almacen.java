@@ -56,4 +56,16 @@ public class Almacen implements Serializable, DatoTabla {
 		Object[] valores = {nombre, direccion, telefono};
 		return valores;
 	}
+
+	@Override
+	public boolean compararValores(Object[] valores) {
+		boolean iguales = true;
+		Object[] vals = getValores();
+		int i = 0;
+		while(i < valores.length && iguales){
+			iguales = vals[i] == valores[i];
+			i++;
+		}
+		return iguales;
+	}
 }
