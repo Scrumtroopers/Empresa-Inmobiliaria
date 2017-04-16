@@ -29,11 +29,13 @@ public class BD implements Serializable{
     //private static ArrayList<Proveedor> proveedores = new ArrayList<>();
     private ArrayList<Producto> productos;
     private ArrayList<Almacen> almacenes;
+    private ArrayList<RegistroAlmacen> registroAlmacenes;
     
     public BD(){
         usuarios = new ArrayList<>();
         productos = new ArrayList<>();
         almacenes = new ArrayList<>();
+        registroAlmacenes = new ArrayList<>();
     }
 
     //******************USUARIO****************************
@@ -121,4 +123,16 @@ public class BD implements Serializable{
         return almacenes;
     }
      //*********************FIN de operaciones de ALMACEN*****************************
+    
+    //********************** Registro Almacenes************************************
+    public void guardarRegistroAlmacen(RegistroAlmacen registro){
+    	registroAlmacenes.add(registro);
+    	guardarDB();
+    }
+    
+    public ArrayList<RegistroAlmacen> getRegistroAlmacenes(){
+        return registroAlmacenes;
+    }
+    
+    //********************** Fin de Registro Almacenes **************************
 }
