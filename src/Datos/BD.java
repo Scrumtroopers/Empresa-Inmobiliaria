@@ -63,7 +63,7 @@ public class BD {
         Categoria categoria = null;
         switch (user[7]) {
             case "Administrador":
-                categoria = Categoria.ADMINISTRADOR;
+                categoria = Categoria.ADMINISTRADOR_ALMACEN;
                 break;
             case "Empleado":
                 categoria = Categoria.EMPLEADO;
@@ -75,7 +75,6 @@ public class BD {
 
     private static void guardarDBUsuario(String nickname) {
         try {
-
             ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("FilesUsuario\\usuario_" + nickname + ".obj"));
             salida.writeObject(usuarios);
             salida.close();
