@@ -98,7 +98,7 @@ public class BD {
     public static boolean disponibleUsuario(String nickname){
         boolean res = false;
         try{
-            FileInputStream fis = new FileInputStream("usuario_" + nickname + ".obj");
+            FileInputStream fis = new FileInputStream("FilesUsuario\\usuario_" + nickname + ".obj");
             
         } catch(Exception e){
             res = true;
