@@ -94,16 +94,9 @@ public class VentanaRegistroAlmacenes extends JFrame {
 				j++;
 			}
 			if(encontrado != null){
-				ArrayList<Producto> productos = BD.bd.getProducto();
-				ArrayList<Producto> seleccionados = new ArrayList<Producto>();
-				for(Producto p : productos){
-					if(p.getAlmacen() == encontrado){
-						seleccionados.add(p);
-					}
-				}
 				if(VentanaAlmacen.ventana != null && VentanaAlmacen.ventana.isVisible())
 					VentanaAlmacen.ventana.setVisible(false);
-				VentanaAlmacen.ventana = new VentanaAlmacen(seleccionados, encontrado.toString());
+				VentanaAlmacen.ventana = new VentanaAlmacen(encontrado);
 				VentanaAlmacen.ventana.setVisible(true);
 			}
 		}
