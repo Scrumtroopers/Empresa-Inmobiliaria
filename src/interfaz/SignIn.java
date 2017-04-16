@@ -126,10 +126,16 @@ public class SignIn extends JFrame {
 		getContentPane().add(passwordField2);
 		
 		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createUser();
+			}
+		});
 		btnOk.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 11));
 		btnOk.setBackground(new Color(192, 192, 192));
 		btnOk.setBounds(110, 330, 140, 25);
 		getContentPane().add(btnOk);
+		
 		
 		JButton btnLogIn = new JButton("Log in");
 		btnLogIn.addActionListener(new ActionListener() {
@@ -159,5 +165,9 @@ public class SignIn extends JFrame {
 			System.out.println("error");
 			e.printStackTrace();
 		}
+	}
+	
+	void createUser(){
+		
 	}
 }
