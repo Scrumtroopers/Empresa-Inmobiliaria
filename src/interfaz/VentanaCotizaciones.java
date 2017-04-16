@@ -1,4 +1,4 @@
-package view;
+package interfaz;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -204,13 +204,16 @@ public class VentanaCotizaciones extends JFrame{
 	}
 	
 	private double getNumero(JTextField tf){
+		double numero=0.0;
 		String num = tf.getText();
-		if(num){
-			
-		}
-		double numero = Double.parseDouble(num);
-		return numero;
 		
+	     try {numero = Double.parseDouble(num);
+		
+	     } catch( Exception e){
+	    	 System.out.println("numero incorrecto");
+	     }
+	     return numero;
+	     
 	}
 	
 	
