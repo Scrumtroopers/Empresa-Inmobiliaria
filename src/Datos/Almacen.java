@@ -1,11 +1,13 @@
 package Datos;
 
+import java.io.Serializable;
+
 /**
 *
 * @author Bernardo
 */
 
-public class Almacen {
+public class Almacen implements Serializable {
 	
 	private String nombre; //Nombre del almacen
 	private String direccion; //Direccion del almacen

@@ -1,11 +1,13 @@
 package Datos;
 
+import java.io.Serializable;
+
 /**
 *
 * @author Bernardo
 */
 
-public class Producto {
+public class Producto implements Serializable{
 	
 	private int unidades; //Unidades totales del producto
 	private String nombre; 
