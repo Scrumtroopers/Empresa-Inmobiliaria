@@ -21,7 +21,7 @@ public class LogIn extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void init() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -103,11 +103,10 @@ public class LogIn extends JFrame {
 	void switchToSignIn(){
 		try {
 			this.dispose();
-			SignIn frame = new SignIn();
-			frame.setVisible(true);
+			ventana_crear_Usuario.init();
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
-			System.out.println("error");
+			System.out.println("error cambio de vista");
 			e.printStackTrace();
 		}
 	}

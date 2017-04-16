@@ -12,6 +12,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import Datos.BD;
 
 public class SignIn extends JFrame {
 	private JTextField nameField;
@@ -168,6 +169,17 @@ public class SignIn extends JFrame {
 	}
 	
 	void createUser(){
+		String[] apellido = apellidoField.getText().split(" ");
+		//nickname  nombre apP apM clave fecha sexo categoria
+		String[] newUser = new String[7];	
+		newUser[1] = nameField.getText();
+		newUser[2] = apellido[0];
+		newUser[3] = apellido[1];
+		newUser[3] = 
+		newUser[3] = apellido[1];
+		newUser[3] = apellido[1];
 		
+		BD.guardarUsuario(newUser);
+		switchToLogIn();
 	}
 }

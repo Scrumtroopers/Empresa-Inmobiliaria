@@ -38,7 +38,7 @@ public class ventana_crear_Usuario extends JFrame {
     /**
      * Launch the application.
      */
-    public static void main(String[] args) {
+    public static void init() {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -184,6 +184,9 @@ public class ventana_crear_Usuario extends JFrame {
             String[] usuario = {nickname, nombre, apellidoP, apellidoM, clave, fecha, sexo, cargo};
             BD.guardarUsuario(usuario);
             JOptionPane.showMessageDialog(null, "REGISTRO SATISFACTORIAMENTE", " ", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            LogIn.init();
+            
         }else{
             JOptionPane.showMessageDialog(null, "ESTE USUARIO YA EXISTE", " ", JOptionPane.WARNING_MESSAGE);
         }
