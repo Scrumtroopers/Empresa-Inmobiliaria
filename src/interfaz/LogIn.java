@@ -45,8 +45,7 @@ public class LogIn extends JFrame {
 		setTitle("SCT LOG IN");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 360, 419);
-		getContentPane().setBackground(new Color(60, 179, 113));
+		setBounds(100, 100, 360, 368);
 		getContentPane().setLayout(null);
 		
 		JLabel lblLogIn = new JLabel("LOG IN");
@@ -54,10 +53,10 @@ public class LogIn extends JFrame {
 		lblLogIn.setBounds(140, 20, 100, 50);
 		getContentPane().add(lblLogIn);
 		
-		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 13));
-		lblEmail.setBounds(30, 80, 100, 15);
-		getContentPane().add(lblEmail);
+		JLabel lblUser = new JLabel("User:");
+		lblUser.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 13));
+		lblUser.setBounds(30, 80, 100, 15);
+		getContentPane().add(lblUser);
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 13));
@@ -81,15 +80,8 @@ public class LogIn extends JFrame {
 			}
 		});
 		btnOk.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 11));
-		btnOk.setBackground(new Color(192, 192, 192));
 		btnOk.setBounds(110, 190, 140, 25);
-		getContentPane().add(btnOk);	
-		
-		JButton btnForgotPwd = new JButton("Forgot password");
-		btnForgotPwd.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 11));
-		btnForgotPwd.setBackground(Color.LIGHT_GRAY);
-		btnForgotPwd.setBounds(110, 240, 140, 25);
-		getContentPane().add(btnForgotPwd);
+		getContentPane().add(btnOk);
 		
 		JButton btnSignIn = new JButton("Sign in");
 		btnSignIn.addActionListener(new ActionListener() {
@@ -98,14 +90,13 @@ public class LogIn extends JFrame {
 			}
 		});
 		btnSignIn.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 11));
-		btnSignIn.setBackground(new Color(192, 192, 192));
-		btnSignIn.setBounds(110, 330, 140, 25);
+		btnSignIn.setBounds(110, 284, 140, 25);
 		getContentPane().add(btnSignIn);
 		
 		JLabel lblDontHaveAn = new JLabel("Don't have an account?");
 		lblDontHaveAn.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDontHaveAn.setForeground(new Color(0, 0, 128));
-		lblDontHaveAn.setBounds(110, 300, 150, 15);
+		lblDontHaveAn.setBounds(110, 244, 150, 15);
 		getContentPane().add(lblDontHaveAn);	
 	}
 
