@@ -137,7 +137,7 @@ import javax.swing.border.EmptyBorder;
 			contentPane.add(scrollPaneParaTablPrdctsSelect);
 			
 			botonAnadir = new JButton();
-			botonAnadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/aceptar.png")));
+			//botonAnadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/aceptar.png")));
 			botonAnadir.setBounds(20, 350, 50, 30);
 			botonAnadir.setBackground(new Color(245, 245, 245));
 			botonAnadir.addActionListener(new ActionListener() {
@@ -149,7 +149,7 @@ import javax.swing.border.EmptyBorder;
 			contentPane.add(botonAnadir);
 			
 			botonQuitar = new JButton();
-			botonQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/quitar.png")));
+			//botonQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/quitar.png")));
 			botonQuitar.setBounds(100, 350, 50, 30);
 			botonQuitar.setBackground(new Color(245, 245, 245));
 			botonQuitar.addActionListener(new ActionListener() {
@@ -161,7 +161,7 @@ import javax.swing.border.EmptyBorder;
 			contentPane.add(botonQuitar);
 			
 			botonEditar = new JButton();
-			botonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/editar.png")));
+			//botonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/editar.png")));
 			botonEditar.setBounds(180, 350, 50, 30);
 			botonEditar.setBackground(new Color(245, 245, 245));
 			botonEditar.addActionListener(new ActionListener() {
