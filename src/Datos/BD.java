@@ -1,9 +1,12 @@
 package Datos;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,91 +21,101 @@ import java.util.Date;
  *
  * @author ariel
  */
-public class BD {
+public class BD implements Serializable{
+    
+    public static BD bd;
 
-    private static ArrayList<String[]> usuarios = new ArrayList<>();
-
-    public static void guardarUsuario(String[] usuario) {
-        usuarios.add(usuario);
-        String nickname = usuario[0];
-        guardarDBUsuario(nickname);
+    private ArrayList<Usuario> usuarios;
+    //private static ArrayList<Proveedor> proveedores = new ArrayList<>();
+    private ArrayList<Producto> productos;
+    private ArrayList<Almacen> almacenes;
+    
+    public BD(){
+        usuarios = new ArrayList<>();
+        productos = new ArrayList<>();
+        almacenes = new ArrayList<>();
     }
 
-    public static Usuario getUsuario(String nickname, String clave) {
-        cargarDBUsuario(nickname);
-        for (String[] usuario : usuarios) {
+    //******************USUARIO****************************
+    public void guardarUsuario(Usuario usuario) {
+        usuarios.add(usuario);
+    }
 
-            if (usuario[0].equals(nickname) && usuario[4].equals(clave)) {
-                return convertirUsuario(usuario);
+    public Usuario getUsuario(String nickname, String clave) {
+        for (Usuario usuario : usuarios) {
+
+            if (usuario.getNickname().equals(nickname) && usuario.getClave().equals(clave)) {
+                return usuario;
             }
         }
         return null;
     }
-
-    private static Usuario convertirUsuario(String[] user) {
-        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-        String strFecha = user[5];
-        Date fecha = null;
-        try {
-
-            fecha = formatoDelTexto.parse(strFecha);
-
-        } catch (ParseException ex) {
-
-            ex.printStackTrace();
-
+    
+    
+    public boolean disponibleUsuario(String nickname) {
+        boolean res = true;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNickname().equalsIgnoreCase(nickname)) {
+                return false;
+            }
         }
-
-        Sexo sexo;
-        if (user[6].equalsIgnoreCase("Femenino")) {
-            sexo = Sexo.FEMENINO;
-        } else {
-            sexo = Sexo.MASCULINO;
-        }
-
-        String categoria = "";
-        switch (user[7]) {
-            case "Administrador":
-                categoria = "ADMINISTRADOR_ALMACEN";
-                break;
-            case "Empleado":
-                categoria = "EMPLEADO";
-                break;
-        }
-
-        return new Usuario(user[0], user[1], user[2], user[3], user[4], fecha, sexo, categoria);
+        return res;
     }
+    
+    public ArrayList<Usuario> getUsuarios(){
+        return usuarios;
+    }
+    //***********************Fin operaciones de USUARIO*************************
+    
+    //************************ DB GENERAL ***************************************
 
-    private static void guardarDBUsuario(String nickname) {
+    public void guardarDB() {
+    	System.out.println("Guardando....");
         try {
-            ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("FilesUsuario\\usuario_" + nickname + ".obj"));
-            salida.writeObject(usuarios);
+            ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("Files\\BASE_DE_DATOS.obj"));
+            salida.writeObject(this);
             salida.close();
         } catch (Exception e) {
             System.out.println("datos incorrectos");
         }
     }
 
-    private static void cargarDBUsuario(String nickname) {
-        try {
-            FileInputStream fis = new FileInputStream("FilesUsuario\\usuario_" + nickname + ".obj");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            usuarios = (ArrayList<String[]>) ois.readObject();
-            ois.close();
-            fis.close();
-        } catch (Exception e) {
-            System.out.println("no existe usuario");
-        }
+    public static void cargarDB() throws IOException, ClassNotFoundException {
+    	FileInputStream fis = new FileInputStream("Files\\BASE_DE_DATOS.obj");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        bd = (BD) ois.readObject();
+        ois.close();
+        fis.close();
     }
     
-    public static boolean disponibleUsuario(String nickname){
-        boolean res = false;
-        try{
-            FileInputStream fis = new FileInputStream("FilesUsuario\\usuario_" + nickname + ".obj");
-            
-        } catch(Exception e){
-            res = true;
-        }
-        return res;
+    //************************ FIN DB GENERAL ***************************************
+    //**********************PRODUCTO**********************************
+    public void guardarProducto(Producto producto) {
+        productos.add(producto);
     }
+    
+    public Producto getProducto(String nombre, String marca, String modelo){
+        for(Producto producto : productos){
+            if(producto.getNombre().equals(nombre) && producto.getMarca().equals(marca) && producto.getModelo().equals(modelo)){
+                return producto;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList<Producto> getProducto(){
+        return productos;
+    }
+
+    //*********************FIN de operaciones de PRODUCTO*****************************
+    
+    //********************Almacen **************************************
+    public void guardarAlmacen(Almacen almacen){
+        almacenes.add(almacen);
+    }
+    
+    public ArrayList<Almacen> getAlamacenes(){
+        return almacenes;
+    }
+     //*********************FIN de operaciones de ALMACEN*****************************
 }
