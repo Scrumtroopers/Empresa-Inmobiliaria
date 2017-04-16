@@ -121,19 +121,19 @@ public class LogIn extends JFrame {
 	}
 	
 	void log(){
-		//Usuario user = BD.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
-		//System.out.println(user.getNickname());
-		//System.out.println(user.getCategoria());
-		
-		/*if (user.getCategoria().toString().equals("ADMINISTRADOR_ALMACEN")){
+		Usuario user = BD.bd.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
+		System.out.println(user.getNickname());
+		System.out.println(user.getCategoria());
+		if (user.getCategoria().equals("ADMINISTRADOR_ALMACEN")){
 			dispose();
 			System.out.print(user.getNombre());
-			VentanaAlmacen.init(user);
+			VentanaAlmacen.main(null);
+			//aca aclopar
 		}
 		else{
-			if (user.getCategoria()==Categoria.EMPLEADO){
+			if (user.getCategoria().equals("EMPLEADO")){
 				
 			}
-		}*/
+		}
 	}
 }
