@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import Datos.BD;
+import Datos.Categoria;
+import Datos.Usuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -71,6 +76,11 @@ public class LogIn extends JFrame {
 		getContentPane().add(passwordField);
 		
 		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				log();
+			}
+		});
 		btnOk.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 11));
 		btnOk.setBackground(new Color(192, 192, 192));
 		btnOk.setBounds(110, 190, 140, 25);
@@ -109,5 +119,22 @@ public class LogIn extends JFrame {
 			System.out.println("error cambio de vista");
 			e.printStackTrace();
 		}
+	}
+	
+	void log(){
+		Usuario user = BD.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
+		System.out.println(user.getNickname());
+		System.out.println(user.getCategoria());
+		
+		/*if (user.getCategoria().toString().equals("ADMINISTRADOR_ALMACEN")){
+			dispose();
+			System.out.print(user.getNombre());
+			VentanaAlmacen.init(user);
+		}
+		else{
+			if (user.getCategoria()==Categoria.EMPLEADO){
+				
+			}
+		}*/
 	}
 }

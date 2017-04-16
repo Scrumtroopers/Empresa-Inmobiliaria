@@ -10,7 +10,6 @@ package Datos;
  * @author ariel
  */
 public enum Categoria {
-    ADMINISTRADOR_ALMACEN,
-    ADMINISTRADOR_INVENTARIO,
+    ADMINISTRADOR,
     EMPLEADO;
 }
