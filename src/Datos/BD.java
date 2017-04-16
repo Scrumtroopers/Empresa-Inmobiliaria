@@ -112,11 +112,15 @@ public class BD implements Serializable{
     }
     
     public void eliminarProducto(String nombre, String marca, String modelo){
+    	ArrayList<Producto> eliminar = new ArrayList<Producto>();
     	for(Producto producto : productos){
     		if(producto.getNombre().equals(nombre) && producto.getMarca().equals(marca) && producto.getModelo().equals(modelo)){
-    			productos.remove(producto);
+    			//productos.remove(producto);
+    			eliminar.add(producto);
     		}
     	}
+    	for(Producto p : eliminar)
+    		productos.remove(p);
     }
 
     //*********************FIN de operaciones de PRODUCTO*****************************
@@ -133,12 +137,14 @@ public class BD implements Serializable{
     
     
     public void eliminarAlmacen(String nombre){
+    	ArrayList<Almacen> eliminar = new ArrayList<Almacen>();
     	for(Almacen almacen : almacenes){
     		if(almacen.getNombre().equals(nombre)){
-    			almacenes.remove(almacen);
+    			eliminar.add(almacen);
     		}
     	}
-    	
+    	for(Almacen a : eliminar)
+    		almacenes.remove(a);
     }
     
      //*********************FIN de operaciones de ALMACEN*****************************

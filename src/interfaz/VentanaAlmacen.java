@@ -150,13 +150,13 @@ public class VentanaAlmacen extends JFrame {
 				j++;
 			}
 			if(encontrado != null){
-				//BD.bd.Metodo para eliminar
+				BD.bd.eliminarProducto(encontrado.getNombre(), encontrado.getMarca(), encontrado.getModelo());
 				JOptionPane.showMessageDialog(this, "Producto Eliminado");
 				actualizarTabla();
 			}
-			else{
-				JOptionPane.showMessageDialog(this, "Debe seleccionar un producto");
-			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "Debe seleccionar un producto");
 		}
 	}
 	

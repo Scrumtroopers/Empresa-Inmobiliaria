@@ -87,8 +87,14 @@ public class Producto implements Serializable, DatoTabla{
 
 	@Override
 	public boolean compararValores(Object[] valores) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean iguales = true;
+		Object[] vals = getValores();
+		int i = 0;
+		while(i < valores.length && iguales){
+			iguales = vals[i].toString().equals(valores[i].toString());
+			i++;
+		}
+		return iguales;
 	}
 	
 	
