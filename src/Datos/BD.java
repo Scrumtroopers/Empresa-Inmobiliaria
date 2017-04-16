@@ -39,6 +39,7 @@ public class BD implements Serializable{
     //******************USUARIO****************************
     public void guardarUsuario(Usuario usuario) {
         usuarios.add(usuario);
+        guardarDB();
     }
 
     public Usuario getUsuario(String nickname, String clave) {
@@ -92,6 +93,7 @@ public class BD implements Serializable{
     //**********************PRODUCTO**********************************
     public void guardarProducto(Producto producto) {
         productos.add(producto);
+        guardarDB();
     }
     
     public Producto getProducto(String nombre, String marca, String modelo){
@@ -112,6 +114,7 @@ public class BD implements Serializable{
     //********************Almacen **************************************
     public void guardarAlmacen(Almacen almacen){
         almacenes.add(almacen);
+        guardarDB();
     }
     
     public ArrayList<Almacen> getAlamacenes(){
