@@ -1,17 +1,18 @@
 package interfaz;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import Datos.BD;
+import Datos.Proveedor;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.JTable;
-import javax.swing.JToolBar;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -22,6 +23,7 @@ public class VentanaProveedores extends JFrame{
 
 	private JPanel contentPane;
 	private JTable tablaProveedores;
+	private ModeloTabla modelo;
 	private JLabel titulo;
 	private JButton botonNuevoProveedor;
 	 
@@ -30,11 +32,11 @@ public class VentanaProveedores extends JFrame{
 			public void run() {
 				try {
 					Object[][] datos = new Object[][] {
-						{"Pepe Rodriguez", "12341234", "especificaciones"},
-						{"Miguel Antonio", "98798755", "espicificaciones"},
+						{"Pepe", "Rodriguez", "Sanchez","123123", "112233", "especificaciones"},
+						{"Miguel",  "Antonio", "Marcos", "987987","998877", "espicificaciones"},
 					};
 					String[] nombresColumnas = new String[] {
-							"Nombre", "Numero de Contacto", "Especificaciones"
+							"Nombre", "Apellido Paterno", "Apellido Materno", "Telefono", "Celular", "Detalle Producto"
 						};
 					VentanaProveedores frame = new VentanaProveedores(datos, nombresColumnas, "Lista de Proveedores");
 					frame.setVisible(true);
@@ -44,7 +46,7 @@ public class VentanaProveedores extends JFrame{
 			}
 		});
 	}
-
+	
 	public VentanaProveedores(Object[][] datos, String[] nombresColumnas, String textoTitulo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -63,9 +65,15 @@ public class VentanaProveedores extends JFrame{
 		tablaProveedores = new JTable();
 		tablaProveedores.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		tablaProveedores.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ModeloTabla modelo = new ModeloTabla(datos, nombresColumnas);
-		tablaProveedores.setModel(modelo);
 		
+		// UTILIZAR SOLO PARA PROBAR MAIN()
+		modelo = new ModeloTabla(datos, nombresColumnas);
+		
+		/* UTILIZAR EN PROGRAMA
+		modelo = new ModeloTabla(BD.bd.getAlamacenes()); 
+		*/
+		
+		tablaProveedores.setModel(modelo);
 		tablaProveedores.setBounds(10, 52, 654, 311);
 		JScrollPane scrollPane = new JScrollPane(tablaProveedores);
 		scrollPane.setBounds(10, 52, 654, 348);
@@ -79,13 +87,16 @@ public class VentanaProveedores extends JFrame{
 	                    @Override
 	                    public void run() {
 	                        VentanaAgregarProveedor dialog = new VentanaAgregarProveedor(VentanaProveedores.this);
+	                        //retorna proveedor desde JDialog
+	                        Proveedor prov = dialog.getProveedor();
+	                        // necesitar llamar a actualizarTabla() y que se vean los cambios
 	                    }
 	                });
 	            }
 	        });
 		
 		contentPane.add(botonNuevoProveedor);
-}
+	}
 	
 	private JButton nuevoBoton(int x, int y, String txt){
 		JButton boton = new JButton(txt);
@@ -94,7 +105,14 @@ public class VentanaProveedores extends JFrame{
 		boton.setBounds(x, y, 150, 30);
 		return boton;
 	}
+	
+	public void actualizarTabla(){
+		modelo = new ModeloTabla(BD.bd.getProveedores());
+		tablaProveedores.setModel(modelo);
+	}
+
 }
+
 
 
    
