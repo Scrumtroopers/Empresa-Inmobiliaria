@@ -30,11 +30,13 @@ public class BD implements Serializable{
     private ArrayList<Producto> productos;
     private ArrayList<Almacen> almacenes;
     private ArrayList<RegistroAlmacen> registroAlmacenes;
+    private ArrayList<Cotizacion> cotizaciones;
     
     public BD(){
         usuarios = new ArrayList<>();
         productos = new ArrayList<>();
         almacenes = new ArrayList<>();
+        cotizaciones = new ArrayList<>();
         registroAlmacenes = new ArrayList<>();
     }
 
@@ -42,6 +44,10 @@ public class BD implements Serializable{
     public void guardarUsuario(Usuario usuario) {
         usuarios.add(usuario);
         guardarDB();
+    }
+    
+    public ArrayList<Cotizacion> getCotizaciones(){
+    	return cotizaciones;
     }
 
     public Usuario getUsuario(String nickname, String clave) {
@@ -52,6 +58,11 @@ public class BD implements Serializable{
             }
         }
         return null;
+    }
+    
+    public void guardarCotizacion(Cotizacion c){
+    	cotizaciones.add(c);
+    	guardarDB();
     }
     
     
@@ -145,6 +156,17 @@ public class BD implements Serializable{
     	}
     	for(Almacen a : eliminar)
     		almacenes.remove(a);
+    }
+    
+    public void eliminarCotizacion(Cotizacion c){
+    	cotizaciones.remove(c);
+    	guardarDB();
+    }
+    
+    public void actualizarCotizacion(Cotizacion c1, Cotizacion c2){
+    	c2.setCodigo(c1.getCodigoCot());
+    	cotizaciones.set(cotizaciones.indexOf(c1), c2);
+    	guardarDB();
     }
     
      //*********************FIN de operaciones de ALMACEN*****************************

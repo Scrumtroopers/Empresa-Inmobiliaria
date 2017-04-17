@@ -124,6 +124,8 @@ public class LogIn extends JFrame {
 		else{
 			if (user.getCategoria().equals("EMPLEADO")){
 				// llamar a ventana pedidos
+				/*if(VentanaPedidosUsuario.ventana != null)
+					VentanaPedidosUsuario.ventana = new VentanaPedidosUsuario();*/
 			}
 		}
 	}

@@ -18,6 +18,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
 	public class VentanaPedidosUsuario extends JFrame{
+		
+		public static VentanaPedidosUsuario ventana;
+		
 		private JPanel contentPane;
 		private JTable tablPrdctsXPdir;
 		private JTable tablPrdctsSelect;
@@ -58,7 +61,7 @@ import javax.swing.border.EmptyBorder;
 				}
 			});
 	
-}
+		}
 		
 	public VentanaPedidosUsuario(Object[][] datos1, String[]nombreColumnas1,Object[][] datos2, String[]nombreColumnas2){
 			setResizable(false);

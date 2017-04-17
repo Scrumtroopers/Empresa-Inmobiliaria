@@ -1,8 +1,9 @@
 package Datos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Cotizacion {
+public class Cotizacion implements Serializable, DatoTabla {
 	private String codigoCot;
 	private Date fecha;
 	private Date fechaVenc;
@@ -12,7 +13,9 @@ public class Cotizacion {
 	private double valorUni;
 	private int cantidad;
 	
-	public Cotizacion(String codigoCot,Date fecha,Date fechaVenc,long NIT,String empresa,Producto producto,double valorUni,int cantidad){
+	private double tipoCambio;
+	
+	public Cotizacion(String codigoCot,Date fecha,Date fechaVenc,long NIT,String empresa,Producto producto,double valorUni,int cantidad, double tipoCambio){
 		this.setCodigoCot(codigoCot);
 		this.setFecha(fecha);
 		this.setFechaVenc(fechaVenc);
@@ -21,7 +24,11 @@ public class Cotizacion {
 		this.setProducto(producto);
 		this.setValorUni(valorUni);
 		this.setCantidad(cantidad);
+		this.tipoCambio = tipoCambio;
+	}
 	
+	public void setTipoCambio(double nuevo){
+		this.tipoCambio = nuevo;
 	}
 
 	public String getCodigoCot() {
@@ -80,12 +87,16 @@ public class Cotizacion {
 		this.valorUni = valorUni;
 	}
 	
-	private int getCantidad() {
+	public int getCantidad() {
 		return cantidad;
 	}
 
-	private void setCantidad(int cantidad) {
+	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	public void setCodigo(String cod){
+		this.codigoCot = cod;
 	}
 	
 	/**
@@ -99,7 +110,7 @@ public class Cotizacion {
 	 * importe total en bolivianos
 	 * @param tipoCambio
 	 */
-	public double importeTotalBs(double tipoCambio){
+	public double importeTotalBs(){
 		double importe=0;
 		if(tipoCambio!=0){
 			importe=importeTotal()*tipoCambio;
@@ -107,28 +118,36 @@ public class Cotizacion {
 		return importe; 
 	}
 	
-	/**
-	 * retorna todos los datos de la cotizacion en un array
-	 * @param tipoCambio - tipo de cambio de moneda extranjera
-	 * @return - todos los datos de la cotizacion como Object[]
-	 */
-	public Object[] getDatos(double tipoCambio){
-		Object[] datos = new String[10];
-		datos[0]=codigoCot;
-		datos[1]=fecha;
-		datos[2]=fechaVenc;
-		datos[3]=NIT;
-		datos[4]=empresa;
-		datos[5]=producto.getNombre();
-		datos[6]=valorUni;
-		datos[7]=cantidad;
-		datos[8]=importeTotal();
-		datos[9]=importeTotalBs(tipoCambio);
-		return datos;
-	}
-	
 	public boolean equals(Cotizacion otra){
 		return codigoCot.equals(otra.codigoCot);
+	}
+
+	@Override
+	public String[] getNombresVariables() {
+		String[] nombresColumnas = {"Codigo","Fecha","Fecha de Vencimiento","NIT","Empresa","Producto","Valor Unitario($us)","Cantidad","Importe Total Moneda Extranjera","Importe Total(Bs)"};
+		return nombresColumnas;
+	}
+
+	/**
+	 * retorna todos los datos de la cotizacion en un array
+	 * @return - todos los datos de la cotizacion como Object[]
+	 */
+	@Override
+	public Object[] getValores() {
+		Object[] datos = new Object[]{codigoCot, fecha, fechaVenc, NIT, empresa, producto.toString(), valorUni, cantidad, importeTotal(), importeTotalBs()};
+		return datos;
+	}
+
+	@Override
+	public boolean compararValores(Object[] valores) {
+		boolean iguales = true;
+		Object[] vals = getValores();
+		int i = 0;
+		while(i < valores.length && iguales){
+			iguales = vals[i].toString().equals(valores[i].toString());
+			i++;
+		}
+		return iguales;
 	}
 	
 	

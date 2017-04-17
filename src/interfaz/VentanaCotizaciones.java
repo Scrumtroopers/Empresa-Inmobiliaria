@@ -9,11 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,9 +24,15 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
+import Datos.BD;
+import Datos.Cotizacion;
+import Datos.Producto;
+
 public class VentanaCotizaciones extends JFrame{
 
-	private JFrame frame;
+	public static VentanaCotizaciones ventana;
+	
+	//private JFrame frame;
 	private JPanel contentPane;
 	private JTable tablaCotizaciones;
 	private JLabel titulo,tipoCambioL;
@@ -34,13 +42,14 @@ public class VentanaCotizaciones extends JFrame{
 	private JButton botonActualizar;
 	private double tipoCambio;
 	private JTextField tipoCambiotf;
+	private ModeloTabla modeloTabla;
 	
 	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -55,7 +64,7 @@ public class VentanaCotizaciones extends JFrame{
 					 
 					/* String fecha = "2017/04/15"; 
 					 Date date = new SimpleDateFormat("yyyyy/mm/dd").parse(fecha);
-					 */
+					 
 					System.out.println(fecha);
 					 
 					Object[][] datos={
@@ -72,12 +81,12 @@ public class VentanaCotizaciones extends JFrame{
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public VentanaCotizaciones(Object[][] datos, String[] nombresColumnas, String txtTitulo) {
+	public VentanaCotizaciones(String txtTitulo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		contentPane = new JPanel();
@@ -109,8 +118,8 @@ public class VentanaCotizaciones extends JFrame{
 		tablaCotizaciones = new JTable();
 		tablaCotizaciones.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		tablaCotizaciones.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ModeloTabla modelo = new ModeloTabla(datos,nombresColumnas);
-		tablaCotizaciones.setModel(modelo);
+		modeloTabla = new ModeloTabla(BD.bd.getCotizaciones());
+		tablaCotizaciones.setModel(modeloTabla);
 		tablaCotizaciones.setBounds(10, 52, 1350, 311);
 		JScrollPane scrollPane = new JScrollPane(tablaCotizaciones);
 		scrollPane.setBounds(10, 52, 1350, 600);
@@ -171,24 +180,70 @@ public class VentanaCotizaciones extends JFrame{
 	}
 	
 	private void editarCotizacion() {
-		// TODO Auto-generated method stub
-		
+		int i = tablaCotizaciones.getSelectedRow();
+		if(i != -1){
+			Object[] fila = modeloTabla.getFila(i);
+			ArrayList<Cotizacion> cotizaciones = BD.bd.getCotizaciones();
+			Cotizacion encontrado = null;
+			int j = 0;
+			while(j < cotizaciones.size() && encontrado == null){
+				if(cotizaciones.get(i).compararValores(fila)){
+					encontrado = cotizaciones.get(i);
+				}
+				j++;
+			}
+			if(encontrado != null){
+				if(VentanaModificarCotizacion.ventana != null && VentanaModificarCotizacion.ventana.isVisible())
+					VentanaModificarCotizacion.ventana.setVisible(false);
+				VentanaModificarCotizacion.ventana = new VentanaModificarCotizacion(encontrado);
+				VentanaModificarCotizacion.ventana.setVisible(true);
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "Debe seleccionar una Cotizacion");
+		}
 	}
 	
 	private void agregarCotizacion() {
-		// TODO Auto-generated method stub
+		if(VentanaModificarCotizacion.ventana != null && VentanaModificarCotizacion.ventana.isVisible())
+			VentanaModificarCotizacion.ventana.setVisible(false);
+		VentanaModificarCotizacion.ventana = new VentanaModificarCotizacion();
+		VentanaModificarCotizacion.ventana.setVisible(true);
 		
 	}
 	
 	private void eliminarCotizacion() {
-		// TODO Auto-generated method stub
+		int i = tablaCotizaciones.getSelectedRow();
+		if(i != -1){
+			Object[] fila = modeloTabla.getFila(i);
+			ArrayList<Cotizacion> cotizaciones = BD.bd.getCotizaciones();
+			Cotizacion encontrado = null;
+			int j = 0;
+			while(j < cotizaciones.size() && encontrado == null){
+				if(cotizaciones.get(i).compararValores(fila)){
+					encontrado = cotizaciones.get(i);
+				}
+				j++;
+			}
+			if(encontrado != null){
+				BD.bd.eliminarCotizacion(encontrado);
+				JOptionPane.showMessageDialog(this, "Cotizacion Eliminada");
+				actualizarTabla();
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "Debe seleccionar una Cotizacion");
+		}
 		
 	}
 	
 	private void actualizarCotizacion() {
 		double num = getNumero(tipoCambiotf);
-		System.out.println(num);
-		
+		ArrayList<Cotizacion> cotizaciones = BD.bd.getCotizaciones();
+		for(Cotizacion c : cotizaciones){
+			c.setTipoCambio(num);
+		}
+		actualizarTabla();
 	}
 	
 	private void SNumeros(JTextField a){
@@ -214,6 +269,11 @@ public class VentanaCotizaciones extends JFrame{
 	     }
 	     return numero;
 	     
+	}
+	
+	public void actualizarTabla(){
+		modeloTabla = new ModeloTabla(BD.bd.getCotizaciones());
+		tablaCotizaciones.setModel(modeloTabla);
 	}
 	
 	
