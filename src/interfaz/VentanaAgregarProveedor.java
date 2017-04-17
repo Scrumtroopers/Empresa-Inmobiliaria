@@ -1,20 +1,26 @@
 package interfaz;
 
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.acl.Owner;
+import java.util.Date;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import Datos.BD;
+import Datos.Proveedor;
+import Datos.Usuario;
 
 public class VentanaAgregarProveedor extends JDialog{
     private JPanel contentPane;
@@ -32,6 +38,8 @@ public class VentanaAgregarProveedor extends JDialog{
 	private JTextField textTelefono;
 	private JTextField textCelular;
 	private JTextField textDetalleP;
+	private Proveedor prov;
+	
 
     private JButton nuevoBoton(int x, int y, String txt){
 		JButton boton = new JButton(txt);
@@ -84,7 +92,7 @@ public class VentanaAgregarProveedor extends JDialog{
 	  botonRegistrar = nuevoBoton(300, 340, "Registrar");
 	  botonRegistrar.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
-    			//	botonAgregarActionPerformed(evt);
+    			botonAgregarActionPerformed(evt);
     		}
 	  });
 	  contentPane.add(botonRegistrar);
@@ -118,15 +126,18 @@ public class VentanaAgregarProveedor extends JDialog{
       setVisible(true);
     }
    
+   private void botonAgregarActionPerformed(ActionEvent evt) {
+		prov = new Proveedor(textNombre.getText(), textApellidoP.getText(),
+				textApellidoM.getText(),Integer.parseInt(textTelefono.getText()),
+				Integer.parseInt(textCelular.getText()),textDetalleP.getText());
+
+		//BD.bd.guardarProveedor(prov);  ////pointer to null error
+		
+		JOptionPane.showMessageDialog(null, "REGISTRO SATISFACTORIAMENTE", " ", JOptionPane.INFORMATION_MESSAGE);   
+	}
+   
+   public Proveedor getProveedor(){ return prov; };
    
 }
-   
-   
-   /*http://stackoverflow.com/questions/30381351/how-to-open-a-jdialog-from-a-jframe
-   http://stackoverflow.com/questions/8671322/change-jframe-to-jdialog
-   https://www.google.com/search?client=safari&rls=en&q=how+to+update+jtable+from+another+jframe%3F&ie=UTF-8&oe=UTF-8
-   http://stackoverflow.com/questions/25583002/jdialog-not-showing
-   http://1bestcsharp.blogspot.com/2015/05/java-jtable-add-delete-update-row.html
-   http://1bestcsharp.blogspot.com/2015/04/java-how-to-update-jtable-row-using-joptionpane-showinputdialog-in-java-netbeans.html
-   */
+
     
