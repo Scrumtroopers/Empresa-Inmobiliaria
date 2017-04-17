@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -151,13 +152,13 @@ public class VistaFormularioDatosCliente extends JFrame  {
 		String nombreC = espacNombCliente.getText();
 		String apellPC = espacApellPCli.getText();
 		String apellMC = espacApellMCli.getText();
-		String correoC = espacCorreCli.getText();
 		String direcC = espacDirecCli.getText();
 		String telefC = espacTelfCli.getText();
-		String garanC = espacGaranCli.getText();
-		BD.bd.guardarUsuario(Pedido);
-		Pedido pedidoCliente = new Pedido(nombreC, apellidoP, apellidoM, direccion, telefono, correo, garantia)
-		
+		String correoC = espacCorreCli.getText();
+		double garanC = espacGaranCli.getText();
+		Pedido pedidoCliente = new Pedido(nombreC, apellPC, apellMC, direcC, telefC, correoC, garanC);
+		JOptionPane.showConfirmDialog(null,"Los datos fueron guardados satisfactoriamente ");
+		BD.bd.guardarPedidoCliente(pedidoCliente);
 	}
 	
 }

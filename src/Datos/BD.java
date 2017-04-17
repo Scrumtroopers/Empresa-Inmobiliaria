@@ -32,7 +32,7 @@ public class BD implements Serializable{
     private ArrayList<Almacen> almacenes;
     private ArrayList<RegistroAlmacen> registroAlmacenes;
     private ArrayList<Cotizacion> cotizaciones;
-    
+    private ArrayList<Pedido> pedidos;
     public BD(){
         usuarios = new ArrayList<>();
         productos = new ArrayList<>();
@@ -40,6 +40,7 @@ public class BD implements Serializable{
         cotizaciones = new ArrayList<>();
         registroAlmacenes = new ArrayList<>();
         proveedores = new ArrayList<>();
+        pedidos = new ArrayList<>();
     }
 
     //******************USUARIO****************************
@@ -191,5 +192,14 @@ public class BD implements Serializable{
     
     public ArrayList<Proveedor> getProveedores(){
         return proveedores;
+    }
+
+    public void guardarPedidoCliente(Pedido pedido){
+    	pedidos.add(pedido);
+    	guardarDB();
+    }
+    
+    public ArrayList<Pedido> getPedidos(){
+    	return pedidos;
     }
 }
