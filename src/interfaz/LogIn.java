@@ -108,7 +108,6 @@ public class LogIn extends JFrame {
 			this.dispose();
 			ventana_crear_Usuario.init();
 		} catch (Throwable e) {
-			// TODO Auto-generated catch block
 			System.out.println("error cambio de vista");
 			e.printStackTrace();
 		}
@@ -117,24 +116,34 @@ public class LogIn extends JFrame {
 	void log(){
 		Usuario user = BD.bd.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
 		BD.bd.usuarioLogeado = user;
-		//System.out.println(user.getNickname());
-		//System.out.println(user.getCategoria());
-		dispose();
-		if (user.getCategoria().equals("ADMINISTRADOR_ALMACEN")){
+		if (user!=null){
+			dispose();
+			newWindow(user.getCategoria());
+		}
+		else{
+			nameField.setText("");
+			passwordField.setText("");
+		}
+	}
+	
+	void newWindow(String categoria){
+		if (categoria.equals("ADMINISTRADOR_ALMACEN")){
 			if(VentanaRegistroAlmacenes.ventana == null)
 				VentanaRegistroAlmacenes.ventana = new VentanaRegistroAlmacenes();
 			VentanaRegistroAlmacenes.ventana.setVisible(true);
 		}
 		else{
-			if (user.getCategoria().equals("EMPLEADO")){
+			if (categoria.equals("EMPLEADO")){
 				if(VentanaPedidosUsuario.ventana == null)
 					VentanaPedidosUsuario.ventana = new VentanaPedidosUsuario();
 				VentanaPedidosUsuario.ventana.setVisible(true);
 			}
-			else if(user.getCategoria().equals("COMPRADOR")){
-				if(VentanaCotizaciones.ventana == null)
-					VentanaCotizaciones.ventana = new VentanaCotizaciones("Ventana Cotizaciones");
-				VentanaCotizaciones.ventana.setVisible(true);
+			else{ 
+					if(categoria.equals("COMPRADOR")){
+						if(VentanaCotizaciones.ventana == null)
+							VentanaCotizaciones.ventana = new VentanaCotizaciones("Ventana Cotizaciones");
+						VentanaCotizaciones.ventana.setVisible(true);
+				}
 			}
 		}
 	}
