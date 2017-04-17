@@ -113,6 +113,7 @@ public class LogIn extends JFrame {
 	
 	void log(){
 		Usuario user = BD.bd.getUsuario(nameField.getText(), String.valueOf(passwordField.getPassword()));
+		BD.bd.usuarioLogeado = user;
 		//System.out.println(user.getNickname());
 		//System.out.println(user.getCategoria());
 		dispose();
@@ -123,9 +124,9 @@ public class LogIn extends JFrame {
 		}
 		else{
 			if (user.getCategoria().equals("EMPLEADO")){
-				// llamar a ventana pedidos
-				/*if(VentanaPedidosUsuario.ventana != null)
-					VentanaPedidosUsuario.ventana = new VentanaPedidosUsuario();*/
+				if(VentanaPedidosUsuario.ventana == null)
+					VentanaPedidosUsuario.ventana = new VentanaPedidosUsuario();
+				VentanaPedidosUsuario.ventana.setVisible(true);
 			}
 			else if(user.getCategoria().equals("COMPRADOR")){
 				if(VentanaCotizaciones.ventana == null)

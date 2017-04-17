@@ -25,6 +25,7 @@ public class BD implements Serializable{
     
     public static BD bd;
 
+    public Usuario usuarioLogeado;
     private ArrayList<Usuario> usuarios;
     //private static ArrayList<Proveedor> proveedores = new ArrayList<>();
     private ArrayList<Producto> productos;

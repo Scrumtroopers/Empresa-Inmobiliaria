@@ -16,6 +16,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
 public class VistaFormularioDatosCliente extends JFrame  {
+	
+	public static VistaFormularioDatosCliente ventana;
+	
 	private JPanel contentPane;
 	private JLabel titulo;
 	private JLabel nombClient;
@@ -34,24 +37,10 @@ public class VistaFormularioDatosCliente extends JFrame  {
 	private JTextField espacGaranCli;
 	private JButton guardar;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaFormularioDatosCliente v= new VistaFormularioDatosCliente();
-					v.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-	}
-	
 	public VistaFormularioDatosCliente(){
 		
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(450, 75, 580, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
