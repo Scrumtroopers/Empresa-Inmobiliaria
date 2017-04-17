@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Proveedor implements Serializable, DatoTabla{
 
-	private String nombre;
+    private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
     private int telefono;
