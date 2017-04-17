@@ -1,13 +1,9 @@
 package Datos;
-
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.swing.JLabel;
+public class Proveedor implements Serializable, DatoTabla{
 
-public class Proveedor implements Serializable{
-    
-    private String nombre;
+	private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
     private int telefono;
@@ -34,6 +30,29 @@ public class Proveedor implements Serializable{
     public int getCelular() { return celular; };
     public void setCelular(int celular) { this.celular = celular; };
     public String getDetalleProducto() { return detalleProducto; };
-    public void setDetalleProducto(String detalleProducto) { this.detalleProducto = detalleProducto; };
-    
+    public void setDetalleProducto(String detalleProducto) { this.detalleProducto = detalleProducto; }
+
+	@Override
+	public String[] getNombresVariables() {
+		String[] nombres = {"Nombre", "Apellido Paterno", "Apellido Materno", "Telefono", "Celular", "Detalle Producto"};
+		return nombres;
+	}
+
+	@Override
+	public Object[] getValores() {
+		Object[] valores = {nombre, apellidoPaterno, apellidoMaterno, telefono, celular, detalleProducto};
+		return valores;
+	}
+
+	@Override
+	public boolean compararValores(Object[] valores) {
+		boolean iguales = true;
+		Object[] vals = getValores();
+		int i = 0;
+		while(i < valores.length && iguales){
+			iguales = vals[i].toString().equals(valores[i].toString());
+			i++;
+		}
+		return iguales;
+	}
 }
