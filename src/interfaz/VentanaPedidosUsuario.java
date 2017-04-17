@@ -205,7 +205,7 @@ public class VentanaPedidosUsuario extends JFrame{
 
 
 	private void CerrarSecion(){
-
+		
 	}
 
 	private void anadirProducto(){

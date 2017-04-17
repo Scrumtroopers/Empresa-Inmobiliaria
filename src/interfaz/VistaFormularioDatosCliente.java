@@ -15,6 +15,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import Datos.BD;
+import Datos.Pedido;
+import Datos.Usuario;
+
 public class VistaFormularioDatosCliente extends JFrame  {
 	
 	public static VistaFormularioDatosCliente ventana;
@@ -144,7 +148,16 @@ public class VistaFormularioDatosCliente extends JFrame  {
 	}
 
 	private void GuardarInformacionCliente() {
-
+		String nombreC = espacNombCliente.getText();
+		String apellPC = espacApellPCli.getText();
+		String apellMC = espacApellMCli.getText();
+		String correoC = espacCorreCli.getText();
+		String direcC = espacDirecCli.getText();
+		String telefC = espacTelfCli.getText();
+		String garanC = espacGaranCli.getText();
+		BD.bd.guardarUsuario(Pedido);
+		Pedido pedidoCliente = new Pedido(nombreC, apellidoP, apellidoM, direccion, telefono, correo, garantia)
+		
 	}
 	
 }

@@ -54,50 +54,52 @@ public class LogIn extends JFrame {
 		getContentPane().add(lblLogIn);
 		
 		JLabel lblUser = new JLabel("User:");
-		lblUser.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 13));
+		lblUser.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		lblUser.setBounds(30, 80, 100, 15);
 		getContentPane().add(lblUser);
 		
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 13));
+		lblPassword.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		lblPassword.setBounds(30, 130, 100, 15);
 		getContentPane().add(lblPassword);
 		
 		nameField = new JTextField();
-		nameField.setFont(new Font("Lucida Bright", Font.PLAIN, 13));
+		nameField.setFont(new Font("Century Gothic", Font.PLAIN, 17));
 		nameField.setBounds(130, 80, 175, 20);
 		getContentPane().add(nameField);
 
 		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Lucida Bright", Font.PLAIN, 13));
+		passwordField.setFont(new Font("Century Gothic", Font.PLAIN, 18));
 		passwordField.setBounds(130, 130, 175, 20);
 		getContentPane().add(passwordField);
 		
 		JButton btnOk = new JButton("OK");
-		btnOk.setBackgroun(new Color(245, 245, 245)));
+		btnOk.setBackground(new Color(245, 245, 245));
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				log();
 			}
 		});
-		btnOk.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 11));
+		btnOk.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		btnOk.setBackground(new Color(245, 245, 245));
 		btnOk.setBounds(110, 190, 140, 25);
 		getContentPane().add(btnOk);
 		
 		JButton btnSignIn = new JButton("Sign in");
+		btnSignIn.setBackground(new Color(245, 245, 245));
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				switchToSignIn();
 			}
 		});
-		btnSignIn.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 11));
+		btnSignIn.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		btnSignIn.setBounds(110, 284, 140, 25);
 		getContentPane().add(btnSignIn);
 		
 		JLabel lblDontHaveAn = new JLabel("Don't have an account?");
-		lblDontHaveAn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDontHaveAn.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		lblDontHaveAn.setForeground(new Color(0, 0, 128));
-		lblDontHaveAn.setBounds(110, 244, 150, 15);
+		lblDontHaveAn.setBounds(90, 244, 180, 15);
 		getContentPane().add(lblDontHaveAn);	
 	}
 
