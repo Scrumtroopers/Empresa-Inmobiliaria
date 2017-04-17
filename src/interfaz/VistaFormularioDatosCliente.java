@@ -143,6 +143,7 @@ public class VistaFormularioDatosCliente extends JFrame  {
 		guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuardarInformacionCliente();
+				//this.
 			}
 		});
 		contentPane.add(guardar);
@@ -157,9 +158,9 @@ public class VistaFormularioDatosCliente extends JFrame  {
 		String correoC = espacCorreCli.getText();
 		double garanC = Double.parseDouble(espacGaranCli.getText());
 		Pedido pedidoCliente = new Pedido(nombreC, apellPC, apellMC, direcC, telefC, correoC, garanC);
-		JOptionPane.showConfirmDialog(null,"Los datos fueron guardados satisfactoriamente ");
 		BD.bd.guardarPedidoCliente(pedidoCliente);
-		this.setVisible(false);
+		JOptionPane.showMessageDialog(null, "hola");
+		setVisible(false);
 	}
 	
 }

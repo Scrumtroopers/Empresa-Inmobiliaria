@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import Datos.BD;
 import Datos.Producto;
+import jdk.nashorn.internal.scripts.JO;
 
 public class VentanaPedidosUsuario extends JFrame{
 
@@ -205,15 +207,16 @@ public class VentanaPedidosUsuario extends JFrame{
 
 
 	private void CerrarSecion(){
-		
+		JOptionPane.showMessageDialog(null, "Hasta Luego");
+		setVisible(false);
 	}
 
 	private void anadirProducto(){
-
+		
 	}
 
 	private void buscarProducto(){
-
+		
 	}
 
 	private void nuevoUsuario(){
@@ -228,7 +231,7 @@ public class VentanaPedidosUsuario extends JFrame{
 	}
 
 	private void CancelarPedido(){
-
+		JOptionPane.showConfirmDialog(null, "esta seguro?");
 	}
 }
 
