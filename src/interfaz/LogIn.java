@@ -43,9 +43,9 @@ public class LogIn extends JFrame {
 	 */
 	public LogIn() {
 		setTitle("SCT LOG IN");
-		
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 360, 368);
+		setBounds(500, 150, 360, 368);
 		getContentPane().setLayout(null);
 		
 		JLabel lblLogIn = new JLabel("LOG IN");
@@ -74,6 +74,7 @@ public class LogIn extends JFrame {
 		getContentPane().add(passwordField);
 		
 		JButton btnOk = new JButton("OK");
+		btnOk.setBackgroun(new Color(245, 245, 245)));
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				log();

@@ -106,11 +106,11 @@ public class ventana_crear_Usuario extends JFrame {
 
         textAM = new JTextField();
         textAM.setBounds(188, 153, 180, 20); 
-        textAP.setFont(new Font("Century Gothic ", Font.PLAIN, 17));
-        textAP.setHorizontalAlignment(SwingConstants.LEFT);
+        textAM.setFont(new Font("Century Gothic ", Font.PLAIN, 17));
+        textAM.setHorizontalAlignment(SwingConstants.LEFT);
         contentPane.add(textAM);
 
-        JLabel lblContraseaNueva = new JLabel("ContraseÃ±a Nueva :");
+        JLabel lblContraseaNueva = new JLabel("Contraseña Nueva :");
         lblContraseaNueva.setHorizontalAlignment(SwingConstants.LEFT);
         lblContraseaNueva.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         lblContraseaNueva.setBounds(15, 193, 180, 20);
