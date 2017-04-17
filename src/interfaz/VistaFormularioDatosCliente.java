@@ -159,6 +159,7 @@ public class VistaFormularioDatosCliente extends JFrame  {
 		Pedido pedidoCliente = new Pedido(nombreC, apellPC, apellMC, direcC, telefC, correoC, garanC);
 		JOptionPane.showConfirmDialog(null,"Los datos fueron guardados satisfactoriamente ");
 		BD.bd.guardarPedidoCliente(pedidoCliente);
+		this.setVisible(false);
 	}
 	
 }
