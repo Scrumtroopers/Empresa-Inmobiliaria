@@ -155,7 +155,7 @@ public class VistaFormularioDatosCliente extends JFrame  {
 		String direcC = espacDirecCli.getText();
 		String telefC = espacTelfCli.getText();
 		String correoC = espacCorreCli.getText();
-		double garanC = espacGaranCli.getText();
+		double garanC = Double.parseDouble(espacGaranCli.getText());
 		Pedido pedidoCliente = new Pedido(nombreC, apellPC, apellMC, direcC, telefC, correoC, garanC);
 		JOptionPane.showConfirmDialog(null,"Los datos fueron guardados satisfactoriamente ");
 		BD.bd.guardarPedidoCliente(pedidoCliente);
