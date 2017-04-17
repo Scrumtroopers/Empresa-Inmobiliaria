@@ -11,9 +11,6 @@ public class Principal {
 		catch(Exception e){
 			BD.bd = new BD();
 		}
-		//LogIn.init();
-		VentanaCotizaciones.ventana = new VentanaCotizaciones("Ventana Cotizaciones");
-		VentanaCotizaciones.ventana.setVisible(true);
-		
+		LogIn.init();
 	}
 }

@@ -127,6 +127,11 @@ public class LogIn extends JFrame {
 				/*if(VentanaPedidosUsuario.ventana != null)
 					VentanaPedidosUsuario.ventana = new VentanaPedidosUsuario();*/
 			}
+			else if(user.getCategoria().equals("COMPRADOR")){
+				if(VentanaCotizaciones.ventana == null)
+					VentanaCotizaciones.ventana = new VentanaCotizaciones("Ventana Cotizaciones");
+				VentanaCotizaciones.ventana.setVisible(true);
+			}
 		}
 	}
 }

@@ -177,7 +177,7 @@ public class ventana_crear_Usuario extends JFrame {
         contentPane.add(lblCategoria);
 
         spinnerCategoria = new JSpinner();
-        spinnerCategoria.setModel(new SpinnerListModel(new String[]{"EMPLEADO", "ADMINISTRADOR_ALMACEN", "ADMINISTRADOR_INVENTARIO"}));
+        spinnerCategoria.setModel(new SpinnerListModel(new String[]{"EMPLEADO", "ADMINISTRADOR_ALMACEN", "ADMINISTRADOR_INVENTARIO", "COMPRADOR"}));
         spinnerCategoria.setBounds(120, 355, 240, 20);
         spinnerCategoria.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         contentPane.add(spinnerCategoria);
