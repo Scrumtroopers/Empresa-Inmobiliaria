@@ -79,7 +79,6 @@ public class VentanaProveedores extends JFrame{
 	                    @Override
 	                    public void run() {
 	                        VentanaAgregarProveedor dialog = new VentanaAgregarProveedor(VentanaProveedores.this);
-	                        dialog.doModal();
 	                    }
 	                });
 	            }
