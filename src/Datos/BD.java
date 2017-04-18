@@ -136,6 +136,16 @@ public class BD implements Serializable{
     	for(Producto p : eliminar)
     		productos.remove(p);
     }
+    
+    public ArrayList<Producto> getCoincidenciaPorNombreDeProducto(String nombre){
+        ArrayList<Producto> res = new ArrayList<>();
+        for(Producto producto : productos){
+            if(producto.getNombre().equalsIgnoreCase(nombre)){
+                res.add(producto);
+            }
+        }
+        return res;
+    }
 
     //*********************FIN de operaciones de PRODUCTO*****************************
     

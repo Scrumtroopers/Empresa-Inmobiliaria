@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
+import Datos.Almacen;
 import Datos.BD;
 import Datos.Producto;
 import jdk.nashorn.internal.scripts.JO;
@@ -43,11 +44,16 @@ public class VentanaPedidosUsuario extends JFrame{
 	private JButton botonCerrarSecion;
 	private JButton botonRealizarPedido;
 	private JButton botonCancelarPedido;
-
-	private ArrayList<Producto> productosSeleccionados;
+	private ModeloTabla modelTabla1;
+	private ModeloTabla modelTabla2;
+	//private ArrayList<Producto> productosSeleccionados;
+	private	Object[][] datosSeleccionados;
+	private String[] columnas;
 
 	public VentanaPedidosUsuario(/*Object[][] datos1, String[]nombreColumnas1,Object[][] datos2, String[]nombreColumnas2*/){
-		this.productosSeleccionados = new ArrayList<Producto>();
+		//this.productosSeleccionados = new ArrayList<Producto>();
+		datosSeleccionados= new Object[0][2];
+		columnas = new String[] {"Producto", "Unidades"};
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(350, 75, 720, 580);
@@ -86,7 +92,7 @@ public class VentanaPedidosUsuario extends JFrame{
 		titulo.setBounds(250, 30, 180, 30);
 		contentPane.add(titulo);
 
-		espEscri = new JTextField();
+		espEscri = new JTextField();// es el JtextFiled para realizar la busquedade productos
 		espEscri.setHorizontalAlignment(SwingConstants.LEFT);
 		espEscri.setBounds(20, 75, 203, 20);
 		contentPane.add(espEscri);
@@ -106,7 +112,7 @@ public class VentanaPedidosUsuario extends JFrame{
 		tablPrdctsXPdir = new JTable();
 		tablPrdctsXPdir.setFont(new Font("Century Gothic", Font.PLAIN,13));
 		tablPrdctsXPdir.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
-		ModeloTabla modelTabla1= new ModeloTabla(BD.bd.getProducto());
+		modelTabla1= new ModeloTabla(BD.bd.getProducto());
 		tablPrdctsXPdir.setModel(modelTabla1);
 		tablPrdctsXPdir.setBounds(40, 102, 184, 311);
 		JScrollPane scrollPaneParaTablPrdctsXPdir =  new JScrollPane(tablPrdctsXPdir);
@@ -116,7 +122,7 @@ public class VentanaPedidosUsuario extends JFrame{
 		tablPrdctsSelect = new JTable();
 		tablPrdctsSelect.setFont(new Font("Century Gothic", Font.PLAIN,13));
 		tablPrdctsSelect.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
-		ModeloTabla modelTabla2= new ModeloTabla(productosSeleccionados);
+        modelTabla2= new ModeloTabla(datosSeleccionados,columnas);
 		tablPrdctsSelect.setModel(modelTabla2);
 		tablPrdctsSelect.setBounds(374, 102, 184, 311);
 		JScrollPane scrollPaneParaTablPrdctsSelect =  new JScrollPane(tablPrdctsSelect);
@@ -165,7 +171,7 @@ public class VentanaPedidosUsuario extends JFrame{
 		pagar.setBounds(265, 400, 135, 30);
 		contentPane.add(pagar);
 
-		costoTotal = new JLabel("$$$$$$$$");
+		costoTotal = new JLabel(); 
 		costoTotal.setHorizontalAlignment(SwingConstants.LEFT);
 		costoTotal.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		costoTotal.setBounds(335, 400, 135, 30);
@@ -200,22 +206,60 @@ public class VentanaPedidosUsuario extends JFrame{
 	public void actualizarTabla(){
 		ModeloTabla modelTabla1= new ModeloTabla(BD.bd.getProducto());
 		tablPrdctsXPdir.setModel(modelTabla1);
-		ModeloTabla modelTabla2= new ModeloTabla(productosSeleccionados);
+		ModeloTabla modelTabla2= new ModeloTabla(datosSeleccionados, columnas);
 		tablPrdctsSelect.setModel(modelTabla2);
 	}
 
-
-
 	private void CerrarSecion(){
-		JOptionPane.showMessageDialog(null, "Hasta Luego");
+		JOptionPane.showMessageDialog(null, "Hasta Luego "+ BD.bd.usuarioLogeado.getNombre()+" "+BD.bd.usuarioLogeado.getApellidoPaterno());
 		setVisible(false);
+		LogIn.init();
 	}
 
 	private void anadirProducto(){
-		
+		int fsel = tablPrdctsXPdir.getSelectedRow();
+		try {
+			if(fsel==-1){
+				JOptionPane.showMessageDialog(null, "debe seleccionar algun producto", "Advertencia!", JOptionPane.WARNING_MESSAGE);
+			}else{
+				{
+					Object[] fila = modelTabla1.getFila(fsel);
+					ArrayList<Producto> productos = BD.bd.getProducto();
+					Producto encontrado = null;
+					int j = 0;
+					while(j < productos.size() && encontrado == null){
+						if(productos.get(fsel).compararValores(fila)){
+							encontrado = productos.get(fsel);
+						}
+						j++;
+					}
+					if(encontrado != null){
+						Object[][] nuevo = new Object[datosSeleccionados.length +1][columnas.length];
+						for(int i =0; i<datosSeleccionados.length;i++){
+							nuevo[i][0]  = datosSeleccionados[i][0];
+							nuevo[i][1] = datosSeleccionados[i][1];
+						}
+						nuevo[datosSeleccionados.length][0] = encontrado;
+						nuevo[datosSeleccionados.length][1] = 1;
+						datosSeleccionados = nuevo;
+						actualizarTabla();
+						
+					}
+				}
+			}
+		} catch (Exception e) {
+			
+		}
 	}
 
+	private ArrayList<Producto> conicidenciaPorNombrePrioducto(String nombre){
+		ArrayList<Producto> nuev = BD.bd.getCoincidenciaPorNombreDeProducto(nombre);
+		return nuev;
+	}
+	
 	private void buscarProducto(){
+		String palabraABus = espEscri.getText();
+		
 		
 	}
 
@@ -227,11 +271,16 @@ public class VentanaPedidosUsuario extends JFrame{
 	}
 
 	private void RealizarPedido(){
-
+		JOptionPane.showMessageDialog(null, "se a confirmado su pedido");
+		ArrayList<Producto> qwe = new ArrayList<Producto>();
+		
 	}
 
 	private void CancelarPedido(){
-		JOptionPane.showConfirmDialog(null, "esta seguro?");
+		int respuesta= JOptionPane.showConfirmDialog(null, "Seguro que quieres cancelar ", "Comprobacion",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+		if(respuesta == JOptionPane.YES_OPTION){
+			
+		}
 	}
 }
 
