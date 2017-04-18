@@ -41,9 +41,10 @@ public class VistaFormularioDatosCliente extends JFrame  {
 	private JTextField espacTelfCli;
 	private JTextField espacGaranCli;
 	private JButton guardar;
+	private Pedido pedido;
 	
-	public VistaFormularioDatosCliente(){
-		
+	public VistaFormularioDatosCliente(Pedido pedido){
+		this.pedido = pedido;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(450, 75, 580, 600);
@@ -158,7 +159,8 @@ public class VistaFormularioDatosCliente extends JFrame  {
 		String correoC = espacCorreCli.getText();
 		double garanC = Double.parseDouble(espacGaranCli.getText());
 		Pedido pedidoCliente = new Pedido(nombreC, apellPC, apellMC, direcC, telefC, correoC, garanC);
-		BD.bd.guardarPedidoCliente(pedidoCliente);
+		//BD.bd.guardarPedidoCliente(pedidoCliente);
+		pedido = pedidoCliente;
 		JOptionPane.showMessageDialog(null, "Guardado Satisfactoriamente ");
 		setVisible(false);
 	}
