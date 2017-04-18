@@ -4,19 +4,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-
 import Datos.BD;
 import Datos.Proveedor;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class VentanaProveedores extends JFrame{
@@ -26,15 +24,6 @@ public class VentanaProveedores extends JFrame{
 	private ModeloTabla modelo;
 	private JLabel titulo;
 	private JButton botonNuevoProveedor;
-	 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				VentanaProveedores frame = new VentanaProveedores("Lista de Proveedores");
-				frame.setVisible(true);
-			}
-		});
-	}
 	
 	public VentanaProveedores(String textoTitulo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,26 +43,21 @@ public class VentanaProveedores extends JFrame{
 		tablaProveedores = new JTable();
 		tablaProveedores.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		tablaProveedores.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		modelo = new ModeloTabla(BD.bd.getProveedores()); 
-		tablaProveedores.setModel(modelo);
 		tablaProveedores.setBounds(10, 52, 654, 311);
 		JScrollPane scrollPane = new JScrollPane(tablaProveedores);
 		scrollPane.setBounds(10, 52, 654, 348);
 		contentPane.add(scrollPane);
-		
-		
+			
 		botonNuevoProveedor = nuevoBoton(510, 411, "Nuevo Proveedor");
 		botonNuevoProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				agregarProveedor();
+				VentanaAgregarProveedor prov = new VentanaAgregarProveedor();
+        			prov.setVisible(true); 
 			}
 		 });
 		contentPane.add(botonNuevoProveedor);
-	}
-	
-	private void agregarProveedor() {
-		VentanaAgregarProveedor prov = new VentanaAgregarProveedor();
-        prov.setVisible(true); 
+		
+		actualizarTabla();
 	}
 	
 	private JButton nuevoBoton(int x, int y, String txt){
@@ -85,12 +69,9 @@ public class VentanaProveedores extends JFrame{
 	}
 	
 	public void actualizarTabla(){
-		modelo = new ModeloTabla(BD.bd.getProveedores());
+		ArrayList<Proveedor> proveedores = BD.bd.getProveedores();
+		modelo = new ModeloTabla(proveedores);
 		tablaProveedores.setModel(modelo);
 	}
 
 }
-
-
-
-   
