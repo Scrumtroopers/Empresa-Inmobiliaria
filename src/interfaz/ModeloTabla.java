@@ -23,6 +23,10 @@ public class ModeloTabla extends DefaultTableModel{
 		this.objetos = datos;
 		setDataVector(datos, nombresColumnas);
 	}
+	
+	public Object[][] getDatos(){
+		return objetos;
+	}
 
 	public ModeloTabla(ArrayList<? extends DatoTabla> datos){
 		super();
@@ -47,6 +51,9 @@ public class ModeloTabla extends DefaultTableModel{
 	}
 
 	public boolean isCellEditable(int row, int column) {
-		return columnEditables[column];
+		if(column < columnEditables.length && column >= 0)
+			return columnEditables[column];
+		else
+			return false;
 	}
 }

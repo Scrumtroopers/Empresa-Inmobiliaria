@@ -44,15 +44,6 @@ public class VentanaAgregarProveedor extends JFrame{
 		return boton;
 	}
     
-    public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				VentanaAgregarProveedor.ventana = new VentanaAgregarProveedor();
-				VentanaAgregarProveedor.ventana.setVisible(true);
-			}
-		});
-	}
-    
     public VentanaAgregarProveedor() {
       setResizable(false);
       setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

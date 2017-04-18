@@ -260,12 +260,31 @@ public class VentanaPedidosUsuario extends JFrame{
 	
 	private void buscarProducto(){
 		String palabraABus = espEscri.getText();
-		
-		
+		ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
+		ArrayList<Producto> productos = BD.bd.getProducto();
+		for(Producto prod : productos){
+			Object[] vals = prod.getValores();
+			int i = 0;
+			boolean coincide = false;
+			while(i < vals.length && !coincide){
+				coincide = vals[i].toString().toLowerCase().contains(palabraABus.toLowerCase());
+				i++;
+			}
+			if(coincide){
+				nuevaLista.add(prod);
+			}
+		}
+		if(nuevaLista.size() <= 0){
+			JOptionPane.showMessageDialog(this, "Su busqueda no coincide con ningun producto");
+		}
+		else{
+			this.modelTabla1 = new ModeloTabla(nuevaLista);
+			tablPrdctsXPdir.setModel(modelTabla1);
+			//actualizarTabla();
+		}
 	}
 
 	private void nuevoUsuario(){
-		Pedido pedido ;
 		if(VistaFormularioDatosCliente.ventana != null && VistaFormularioDatosCliente.ventana.isVisible())
 			VistaFormularioDatosCliente.ventana.setVisible(false);
 		VistaFormularioDatosCliente.ventana = new VistaFormularioDatosCliente();
@@ -274,7 +293,26 @@ public class VentanaPedidosUsuario extends JFrame{
 
 	private void RealizarPedido(){
 		JOptionPane.showMessageDialog(null, "se a confirmado su pedido");
-		ArrayList<Producto> qwe = new ArrayList<Producto>();
+		if(VistaFormularioDatosCliente.ventana != null && VistaFormularioDatosCliente.ventana.getPedido() != null){
+			Pedido pedido = VistaFormularioDatosCliente.ventana.getPedido();
+			if(datosSeleccionados.length > 0){
+				for(int i = 0;i<datosSeleccionados.length;i++){
+					pedido.agregarProducto((Producto)datosSeleccionados[i][0]);
+				}
+				BD.bd.guardarPedidoCliente(pedido);
+				JOptionPane.showMessageDialog(this, "Pedido Guardado");
+				datosSeleccionados = new Object[0][2];
+				VistaFormularioDatosCliente.ventana = null;
+				actualizarTabla();
+			}
+			else{
+				JOptionPane.showMessageDialog(this, "Debe seleccionar Productos");
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "Debe llenar datos Clientes");
+		}
+		//ArrayList<Producto> qwe = new ArrayList<Producto>();
 		
 	}
 
