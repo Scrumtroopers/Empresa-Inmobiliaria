@@ -6,13 +6,13 @@ import javax.swing.border.EmptyBorder;
 import Datos.BD;
 import Datos.Proveedor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -25,6 +25,8 @@ public class VentanaProveedores extends JFrame{
 	private ModeloTabla modelo;
 	private JLabel titulo;
 	private JButton botonNuevoProveedor;
+	private JButton botonEditarProveedor;
+	private JButton botonEliminarProveedor;
 	 
 	public VentanaProveedores(String textoTitulo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +47,10 @@ public class VentanaProveedores extends JFrame{
 		tablaProveedores.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		tablaProveedores.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tablaProveedores.setBounds(10, 52, 654, 311);
+		
+		modelo = new ModeloTabla(BD.bd.getProveedores());
+		tablaProveedores.setModel(modelo);
+		
 		JScrollPane scrollPane = new JScrollPane(tablaProveedores);
 		scrollPane.setBounds(10, 52, 654, 348);
 		contentPane.add(scrollPane);
@@ -60,6 +66,22 @@ public class VentanaProveedores extends JFrame{
 		 });
 		contentPane.add(botonNuevoProveedor);
 		
+		botonEditarProveedor = nuevoBoton(250, 411, "Editar Proveedor");
+		botonEditarProveedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editarProveedor();
+			}
+		 });
+		contentPane.add(botonEditarProveedor);
+		
+		botonEliminarProveedor = nuevoBoton(10, 411, "Eliminar Proveedor");
+		botonEliminarProveedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarProveedor();
+			}
+		 });
+		contentPane.add(botonEliminarProveedor);
+		
 		actualizarTabla();
 	}
 	
@@ -72,9 +94,54 @@ public class VentanaProveedores extends JFrame{
 	}
 	
 	public void actualizarTabla(){
-		ArrayList<Proveedor> proveedores = BD.bd.getProveedores();
-		modelo = new ModeloTabla(proveedores);
+		modelo = new ModeloTabla(BD.bd.getProveedores());
 		tablaProveedores.setModel(modelo);
+	}
+	
+	private void editarProveedor() {
+		int i = tablaProveedores.getSelectedRow();
+		if(i != -1){
+			Object[] fila = modelo.getFila(i);
+			ArrayList<Proveedor> proveedores = BD.bd.getProveedores();
+			Proveedor encontrado = null;
+			int j = 0;
+			while(j < proveedores.size() && encontrado == null){
+				if(proveedores.get(i).compararValores(fila)){
+					encontrado = proveedores.get(i);
+				}
+				j++;
+			}
+			if(encontrado != null){
+				if(VentanaAgregarProveedor.ventana != null && VentanaAgregarProveedor.ventana.isVisible())
+					VentanaAgregarProveedor.ventana.setVisible(false);
+				VentanaAgregarProveedor.ventana = new VentanaAgregarProveedor();
+				VentanaAgregarProveedor.ventana.setVisible(true);
+			}
+		}
+		else JOptionPane.showMessageDialog(this, "Debe seleccionar una Proveedor");
+	}
+	
+	private void eliminarProveedor() {
+		int i = tablaProveedores.getSelectedRow();
+		if(i != -1){
+			Object[] fila = modelo.getFila(i);
+			ArrayList<Proveedor> proveedores = BD.bd.getProveedores();
+			Proveedor encontrado = null;
+			int j = 0;
+			while(j < proveedores.size() && encontrado == null){
+				if(proveedores.get(i).compararValores(fila))
+					encontrado = proveedores.get(i);
+				j++;
+			}
+			if(encontrado != null){
+				BD.bd.eliminarProveedor(encontrado);
+				JOptionPane.showMessageDialog(this, "Proveedor Eliminada");
+				actualizarTabla();
+			}
+		}
+		else JOptionPane.showMessageDialog(this, "Debe Seleccionar una Proveedor");
 	}
 
 }
+
+
