@@ -33,6 +33,7 @@ public class VentanaRegistroAlmacenes extends JFrame {
 	
 	private JButton botonAbrirAlmacen;
 	private JButton botonNuevoAlmacen;
+	private JButton botonCerrarSesion;
 
 
 	/**
@@ -64,7 +65,15 @@ public class VentanaRegistroAlmacenes extends JFrame {
 		scrollPane.setBounds(10, 52, 654, 348);
 		contentPane.add(scrollPane);
 		
-		botonAbrirAlmacen = nuevoBoton(516, 411, "Abrir Almacen");
+		botonCerrarSesion = nuevoBoton(516, 411, "Cerrar Sesion");
+		botonCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cerrarSesion();
+			}
+		});
+		contentPane.add(botonCerrarSesion);
+		
+		botonAbrirAlmacen = nuevoBoton(356, 411, "Abrir Almacen");
 		botonAbrirAlmacen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbrirAlmacen();
@@ -73,7 +82,7 @@ public class VentanaRegistroAlmacenes extends JFrame {
 		contentPane.add(botonAbrirAlmacen);
 		
 		
-		botonNuevoAlmacen = nuevoBoton(356, 411, "Nuevo Almacen");
+		botonNuevoAlmacen = nuevoBoton(196, 411, "Nuevo Almacen");
 		botonNuevoAlmacen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NuevoAlmacen();
@@ -101,6 +110,11 @@ public class VentanaRegistroAlmacenes extends JFrame {
 	public void actualizarTabla(){
 		modeloTabla = new ModeloTabla(BD.bd.getAlamacenes());
 		this.tablaRegistro.setModel(modeloTabla);
+	}
+	
+	public void cerrarSesion(){
+		this.setVisible(false);
+		LogIn.init();
 	}
 	
 	private void AbrirAlmacen(){
