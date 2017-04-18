@@ -110,7 +110,7 @@ public class ventana_crear_Usuario extends JFrame {
         textAM.setHorizontalAlignment(SwingConstants.LEFT);
         contentPane.add(textAM);
 
-        JLabel lblContraseaNueva = new JLabel("Contraseña Nueva :");
+        JLabel lblContraseaNueva = new JLabel("Contraseï¿½a Nueva :");
         lblContraseaNueva.setHorizontalAlignment(SwingConstants.LEFT);
         lblContraseaNueva.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         lblContraseaNueva.setBounds(15, 193, 180, 20);
@@ -155,7 +155,7 @@ public class ventana_crear_Usuario extends JFrame {
         spinnerAno = new JSpinner();
         spinnerAno.setModel(new SpinnerListModel(new String[]{"1980","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008"}));
         spinnerAno.setFont(new Font("Century Gothic", Font.PLAIN, 17));
-        spinnerAno.setBounds(310, 275, 55, 22);
+        spinnerAno.setBounds(310, 275, 60, 22);
         contentPane.add(spinnerAno);
 
         JLabel lblSexo = new JLabel("Sexo :");
@@ -185,7 +185,7 @@ public class ventana_crear_Usuario extends JFrame {
         JButton btnRegistrase = new JButton("Registrase");
         btnRegistrase.setHorizontalAlignment(SwingConstants.CENTER);
         btnRegistrase.setBackground(new Color(245, 245, 245));
-        btnRegistrase.setBounds(180, 414, 130, 28);
+        btnRegistrase.setBounds(180, 414, 145, 28);
         btnRegistrase.setFont(new Font("Century Gothic", Font.BOLD, 18));
         btnRegistrase.addActionListener(new ActionListener() {
         	@Override
@@ -196,9 +196,7 @@ public class ventana_crear_Usuario extends JFrame {
         });
         contentPane.add(btnRegistrase);
         
-       /* JButton btnValidar = new JButton("Validar");
-        btnValidar.setBounds(300, 247, 117, 25);
-        contentPane.add(btnValidar);*/
+      
 
     }
 
@@ -227,3 +225,4 @@ public class ventana_crear_Usuario extends JFrame {
         }
     }
 }
+
