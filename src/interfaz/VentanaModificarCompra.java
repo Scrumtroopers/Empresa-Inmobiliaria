@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-
 import Datos.Compra;
 
 public class VentanaModificarCompra extends JFrame{
