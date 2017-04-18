@@ -1,9 +1,5 @@
 package interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -11,11 +7,9 @@ import javax.swing.border.EmptyBorder;
 
 import Datos.Almacen;
 import Datos.BD;
-import Datos.DatoTabla;
 import Datos.Producto;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
