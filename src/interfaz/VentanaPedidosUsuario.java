@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import Datos.Almacen;
 import Datos.BD;
+import Datos.Pedido;
 import Datos.Producto;
 import jdk.nashorn.internal.scripts.JO;
 
@@ -264,6 +265,7 @@ public class VentanaPedidosUsuario extends JFrame{
 	}
 
 	private void nuevoUsuario(){
+		Pedido pedido ;
 		if(VistaFormularioDatosCliente.ventana != null && VistaFormularioDatosCliente.ventana.isVisible())
 			VistaFormularioDatosCliente.ventana.setVisible(false);
 		VistaFormularioDatosCliente.ventana = new VistaFormularioDatosCliente();
