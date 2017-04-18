@@ -10,6 +10,7 @@ import Datos.BD;
 import Datos.Producto;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -35,9 +36,9 @@ public class VentanaProductos extends JFrame {
 	
 	private ModeloTabla modeloTabla;
 	
-	private JButton botonSalir;
-	
-	private Almacen almacen;
+	private JButton botonCerrarSesion;
+	private JButton botonEditar;
+	private JButton botonEliminar;
 	
 	/**
 	 * Constructor
@@ -69,13 +70,31 @@ public class VentanaProductos extends JFrame {
 		scrollPane.setBounds(10, 52, 654, 348);
 		contentPane.add(scrollPane);
 
-		botonSalir = nuevoBoton(516, 411, "Salir");
-		botonSalir.addActionListener(new ActionListener() {
+		botonCerrarSesion = nuevoBoton(516, 411, "Cerrar sesión");
+		botonCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				salir();
 			}
 		});
-		contentPane.add(botonSalir);
+		
+		botonEditar = nuevoBoton(170, 411, "Editar");
+		botonEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				editar();
+			}
+		});
+		
+		botonEliminar = nuevoBoton(330, 411, "Eliminar");
+		botonEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				eliminar();
+			}
+		});
+		
+		contentPane.add(botonCerrarSesion);
+		contentPane.add(botonEditar);
+		contentPane.add(botonEliminar);
+		
 		actualizarTabla();
 	}
 	
@@ -95,6 +114,58 @@ public class VentanaProductos extends JFrame {
 	}
 	
 	private void salir(){
+		LogIn.init();
 		this.setVisible(false);
+	}
+	
+	private void eliminar(){
+		int i = tablaProductos.getSelectedRow();
+		if(i != -1){
+			Object[] fila = modeloTabla.getFila(i);
+			ArrayList<Producto> productos = BD.bd.getProducto();
+			Producto encontrado = null;
+			int j = 0;
+			while(j < productos.size() && encontrado == null){
+				if(productos.get(i).compararValores(fila)){
+					encontrado = productos.get(i);
+				}
+				j++;
+			}
+			if(encontrado != null){
+				BD.bd.eliminarProducto(encontrado.getNombre(), encontrado.getMarca(), encontrado.getModelo());
+				JOptionPane.showMessageDialog(this, "Producto Eliminado");
+				actualizarTabla();
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "Debe seleccionar un producto");
+		}
+	}
+	
+	private void editar(){
+		int i = tablaProductos.getSelectedRow();
+		if(i != -1){
+			Object[] fila = modeloTabla.getFila(i);
+			ArrayList<Producto> productos = BD.bd.getProducto();
+			Producto encontrado = null;
+			int j = 0;
+			while(j < productos.size() && encontrado == null){
+				if(productos.get(i).compararValores(fila)){
+					encontrado = productos.get(i);
+				}
+				j++;
+			}
+			if(encontrado != null){
+				if(VentanaEditarProducto.ventana != null && VentanaEditarProducto.ventana.isVisible()){
+					VentanaEditarProducto.ventana.setVisible(false);
+				}
+				VentanaEditarProducto.ventana = new VentanaEditarProducto(encontrado);
+				VentanaEditarProducto.ventana.setVisible(true);
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "Debe seleccionar un producto");
+		}
+		
 	}
 }

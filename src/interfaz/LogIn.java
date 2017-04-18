@@ -146,8 +146,7 @@ public class LogIn extends JFrame {
 				}
 				else{
 					if(categoria.equals("ADMINISTRADOR_INVENTARIO")){
-						if(VentanaProductos.ventana == null)
-							VentanaProductos.ventana = new VentanaProductos();
+						VentanaProductos.ventana = new VentanaProductos();
 						VentanaProductos.ventana.setVisible(true);
 					}
 				}
