@@ -207,7 +207,7 @@ public class BD implements Serializable{
     }
     
     public void eliminarProveedor(Proveedor pedido) {
-		pedidos.remove(pedido);
+		proveedores.remove(pedido);
     	guardarDB();
 	}
     //**************************Fin proveedor ****************************
