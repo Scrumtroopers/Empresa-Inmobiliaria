@@ -40,6 +40,7 @@ public class VentanaCotizaciones extends JFrame{
 	private JButton botonAgregar;
 	private JButton botonEliminar;
 	private JButton botonActualizar;
+	private JButton botonProveedores;
 	private double tipoCambio;
 	private JTextField tipoCambiotf;
 	private ModeloTabla modeloTabla;
@@ -166,6 +167,15 @@ public class VentanaCotizaciones extends JFrame{
 		});
 		contentPane.add(botonActualizar);
 		
+		botonProveedores = nuevoBoton(900, 660, "Proveedores");
+		botonProveedores.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}			
+		});
+		contentPane.add(botonProveedores);
 		
 		
 	}
