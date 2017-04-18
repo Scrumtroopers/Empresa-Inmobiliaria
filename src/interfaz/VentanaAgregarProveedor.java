@@ -1,28 +1,20 @@
 package interfaz;
 
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.acl.Owner;
-import java.util.Date;
-
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Datos.BD;
-import Datos.Pedido;
 import Datos.Proveedor;
-import Datos.Usuario;
 	
 public class VentanaAgregarProveedor extends JFrame{
 	
@@ -36,6 +28,7 @@ public class VentanaAgregarProveedor extends JFrame{
 	private JLabel labelCelular;
 	private JLabel labelDetalleP;
 	private JButton botonRegistrar;
+	private JButton botonCancelar;
 	private JTextField textNombre;
 	private JTextField textApellidoP;
 	private JTextField textApellidoM;
@@ -49,6 +42,15 @@ public class VentanaAgregarProveedor extends JFrame{
 		boton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		boton.setBounds(x, y, 150, 30);
 		return boton;
+	}
+    
+    public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				VentanaAgregarProveedor.ventana = new VentanaAgregarProveedor();
+				VentanaAgregarProveedor.ventana.setVisible(true);
+			}
+		});
 	}
     
     public VentanaAgregarProveedor() {
@@ -118,6 +120,14 @@ public class VentanaAgregarProveedor extends JFrame{
       textDetalleP.setBounds(180, 275, 130, 20);
       contentPane.add(textDetalleP);		
 
+      botonCancelar = nuevoBoton(50, 340, "Cancelar");
+      botonCancelar.addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+			  int resultado = JOptionPane.showConfirmDialog(null, "Esta Seguro?","Confirmar", JOptionPane.YES_NO_CANCEL_OPTION);
+			  if (resultado == JOptionPane.YES_OPTION || resultado == JOptionPane.CANCEL_OPTION) System.exit(0);
+		  }
+	  });
+	  contentPane.add(botonCancelar);
     }
    
    private void botonAgregarActionPerformed(ActionEvent evt) {
@@ -126,7 +136,9 @@ public class VentanaAgregarProveedor extends JFrame{
 				Integer.parseInt(textCelular.getText()),textDetalleP.getText());
 		BD.bd.guardarProveedor(prov);
 		JOptionPane.showMessageDialog(null, "REGISTRO SATISFACTORIAMENTE", " ", JOptionPane.INFORMATION_MESSAGE);
-		dispose();
+		setVisible(false);
 	}
    
 }
+
+
