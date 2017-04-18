@@ -11,6 +11,7 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,10 +20,13 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Datos.BD;
+import Datos.Pedido;
 import Datos.Proveedor;
 import Datos.Usuario;
-
-public class VentanaAgregarProveedor extends JDialog{
+	
+public class VentanaAgregarProveedor extends JFrame{
+	
+	public static VentanaAgregarProveedor ventana;
     private JPanel contentPane;
 	private JLabel titulo;
 	private JLabel labelNombre;
@@ -38,8 +42,6 @@ public class VentanaAgregarProveedor extends JDialog{
 	private JTextField textTelefono;
 	private JTextField textCelular;
 	private JTextField textDetalleP;
-	private Proveedor prov;
-	
 
     private JButton nuevoBoton(int x, int y, String txt){
 		JButton boton = new JButton(txt);
@@ -49,22 +51,17 @@ public class VentanaAgregarProveedor extends JDialog{
 		return boton;
 	}
     
-    public VentanaAgregarProveedor(Frame owner) {
-        super(owner);
-        createGUI();
-    }
-    
-   public void createGUI(){
+    public VentanaAgregarProveedor() {
+      setResizable(false);
+      setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+ 	  setBounds(450, 75, 480, 400);
       setTitle("Registrar Nuevo Proveedor");
       setFont(new Font("Century Gothic", Font.BOLD, 18));
-      setPreferredSize(new Dimension(480, 400));
       contentPane = new JPanel();
 	  contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	  setContentPane(contentPane);
 	  contentPane.setLayout(null);
-	  getContentPane().add(contentPane);
-      pack();
-	  setLocationRelativeTo(getParent()); 	
-
+		
 	  labelNombre = new JLabel("Nombre(s):");
 	  labelNombre.setBounds(24, 50, 130, 15);
 	  contentPane.add(labelNombre);
@@ -98,46 +95,38 @@ public class VentanaAgregarProveedor extends JDialog{
 	  contentPane.add(botonRegistrar);
     		
 	  textNombre = new JTextField();
-	  textNombre.setBounds(180, 50, 130, 15);
+	  textNombre.setBounds(180, 50, 130, 20);
 	  contentPane.add(textNombre);
     		
 	  textApellidoP = new JTextField();
-	  textApellidoP.setBounds(180, 95, 130, 15);
+	  textApellidoP.setBounds(180, 95, 130, 20);
 	  contentPane.add(textApellidoP);
     		
 	  textApellidoM= new JTextField();
-	  textApellidoM.setBounds(180, 140, 130, 15);
+	  textApellidoM.setBounds(180, 140, 130, 20);
 	  contentPane.add(textApellidoM);
     		
 	  textTelefono = new JTextField();
-	  textTelefono.setBounds(180, 185, 130, 15);
+	  textTelefono.setBounds(180, 185, 130, 20);
 	  contentPane.add(textTelefono);
     		
 	  textCelular = new JTextField();
-	  textCelular.setBounds(180, 230, 130, 15);
+	  textCelular.setBounds(180, 230, 130, 20);
 	  contentPane.add(textCelular);
     		
       textDetalleP = new JTextField();
-      textDetalleP.setBounds(180, 275, 130, 15);
+      textDetalleP.setBounds(180, 275, 130, 20);
       contentPane.add(textDetalleP);		
- 
-      setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-      setModal(true);
-      setVisible(true);
+
     }
    
    private void botonAgregarActionPerformed(ActionEvent evt) {
-		prov = new Proveedor(textNombre.getText(), textApellidoP.getText(),
+		Proveedor prov = new Proveedor(textNombre.getText(), textApellidoP.getText(),
 				textApellidoM.getText(),Integer.parseInt(textTelefono.getText()),
 				Integer.parseInt(textCelular.getText()),textDetalleP.getText());
-
-		//BD.bd.guardarProveedor(prov);  ////pointer to null error
-		
-		JOptionPane.showMessageDialog(null, "REGISTRO SATISFACTORIAMENTE", " ", JOptionPane.INFORMATION_MESSAGE);   
+		BD.bd.guardarProveedor(prov);
+		JOptionPane.showMessageDialog(null, "REGISTRO SATISFACTORIAMENTE", " ", JOptionPane.INFORMATION_MESSAGE);
+		dispose();
 	}
    
-   public Proveedor getProveedor(){ return prov; };
-   
 }
-
-    
