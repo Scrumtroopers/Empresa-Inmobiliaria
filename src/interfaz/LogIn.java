@@ -139,10 +139,17 @@ public class LogIn extends JFrame {
 				VentanaPedidosUsuario.ventana.setVisible(true);
 			}
 			else{ 
-					if(categoria.equals("COMPRADOR")){
-						if(VentanaCotizaciones.ventana == null)
-							VentanaCotizaciones.ventana = new VentanaCotizaciones("Ventana Cotizaciones");
-						VentanaCotizaciones.ventana.setVisible(true);
+				if(categoria.equals("COMPRADOR")){
+					if(VentanaCotizaciones.ventana == null)
+						VentanaCotizaciones.ventana = new VentanaCotizaciones("Ventana Cotizaciones");
+					VentanaCotizaciones.ventana.setVisible(true);
+				}
+				else{
+					if(categoria.equals("ADMINISTRADOR_INVENTARIO")){
+						if(VentanaProductos.ventana == null)
+							VentanaProductos.ventana = new VentanaProductos();
+						VentanaProductos.ventana.setVisible(true);
+					}
 				}
 			}
 		}
