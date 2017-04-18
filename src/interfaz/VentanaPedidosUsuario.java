@@ -123,9 +123,9 @@ public class VentanaPedidosUsuario extends JFrame{
 		scrollPaneParaTablPrdctsSelect.setBounds(374, 102, 324, 235);
 		contentPane.add(scrollPaneParaTablPrdctsSelect);
 
-		botonAnadir = new JButton();
-		//botonAnadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/aceptar.png")));
-		botonAnadir.setBounds(20, 350, 50, 30);
+		botonAnadir = new JButton("Añadir Producto");
+		botonAnadir.setBounds(20, 350, 180, 30);
+		botonAnadir.setFont(new Font("Century Gothic", Font.PLAIN, 17));
 		botonAnadir.setBackground(new Color(245, 245, 245));
 		botonAnadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,9 +135,9 @@ public class VentanaPedidosUsuario extends JFrame{
 		});
 		contentPane.add(botonAnadir);
 
-		botonQuitar = new JButton();
-		//botonQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/quitar.png")));
-		botonQuitar.setBounds(100, 350, 50, 30);
+		botonQuitar = new JButton("Quitar Producto");
+		botonQuitar.setBounds(220, 350, 180, 30);
+		botonQuitar.setFont(new Font("Century Gothic", Font.PLAIN, 17));
 		botonQuitar.setBackground(new Color(245, 245, 245));
 		botonQuitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,9 +147,9 @@ public class VentanaPedidosUsuario extends JFrame{
 		});
 		contentPane.add(botonQuitar);
 
-		botonNUsuario = new JButton();
-		//botonNUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_Pedidos/newUser.png")));
-		botonNUsuario.setBounds(180, 350, 50, 30);
+		botonNUsuario = new JButton("Nuevo Usuario");
+		botonNUsuario.setBounds(420, 350, 180, 30);
+		botonNUsuario.setFont(new Font("Century Gothic", Font.PLAIN, 17));
 		botonNUsuario.setBackground(new Color(245, 245, 245));
 		botonNUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

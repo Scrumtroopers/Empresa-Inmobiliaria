@@ -159,7 +159,7 @@ public class VistaFormularioDatosCliente extends JFrame  {
 		double garanC = Double.parseDouble(espacGaranCli.getText());
 		Pedido pedidoCliente = new Pedido(nombreC, apellPC, apellMC, direcC, telefC, correoC, garanC);
 		BD.bd.guardarPedidoCliente(pedidoCliente);
-		JOptionPane.showMessageDialog(null, "hola");
+		JOptionPane.showMessageDialog(null, "Guardado Satisfactoriamente ");
 		setVisible(false);
 	}
 	
