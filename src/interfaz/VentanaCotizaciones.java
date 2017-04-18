@@ -169,10 +169,9 @@ public class VentanaCotizaciones extends JFrame{
 		
 		botonProveedores = nuevoBoton(900, 660, "Proveedores");
 		botonProveedores.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+				VentanaProveedores ventana= new VentanaProveedores("Lista de Proveedores");
+				ventana.setVisible(true);	
 			}			
 		});
 		contentPane.add(botonProveedores);
