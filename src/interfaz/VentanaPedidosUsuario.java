@@ -148,13 +148,13 @@ public class VentanaPedidosUsuario extends JFrame{
 		botonQuitar.setBackground(new Color(245, 245, 245));
 		botonQuitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				anadirProducto();
+				quitarProducto();
 
 			}
 		});
 		contentPane.add(botonQuitar);
 
-		botonNUsuario = new JButton("Nuevo Usuario");
+		botonNUsuario = new JButton("Nuevo Cliente");
 		botonNUsuario.setBounds(420, 350, 180, 30);
 		botonNUsuario.setFont(new Font("Century Gothic", Font.PLAIN, 17));
 		botonNUsuario.setBackground(new Color(245, 245, 245));
@@ -319,9 +319,17 @@ public class VentanaPedidosUsuario extends JFrame{
 	private void CancelarPedido(){
 		int respuesta= JOptionPane.showConfirmDialog(null, "Seguro que quieres cancelar ", "Comprobacion",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 		if(respuesta == JOptionPane.YES_OPTION){
-			
+			//tablPrdctsXPdir.setModel(modelTabla1);
+			tablPrdctsSelect.setModel(modelTabla2);
 		}
 	}
+	/*metodo para quitar prooducto de la segunda vista
+	private void quitarProducto() {
+		modelTabla2.removeRow(tablPrdctsSelect.getSelectedRow()); 
+		tablPrdctsSelect.setModel(modelTabla2);
+		
+		}
+		*/
 }
 
 
