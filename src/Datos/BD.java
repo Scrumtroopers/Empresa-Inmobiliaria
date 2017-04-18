@@ -205,6 +205,11 @@ public class BD implements Serializable{
     public ArrayList<Proveedor> getProveedores(){
         return proveedores;
     }
+    
+    public void eliminarProveedor(Proveedor pedido) {
+		pedidos.remove(pedido);
+    	guardarDB();
+	}
     //**************************Fin proveedor ****************************
     public void guardarPedidoCliente(Pedido pedido){
     	pedidos.add(pedido);
