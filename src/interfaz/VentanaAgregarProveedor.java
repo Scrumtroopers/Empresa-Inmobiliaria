@@ -47,7 +47,7 @@ public class VentanaAgregarProveedor extends JFrame{
     public VentanaAgregarProveedor() {
       setResizable(false);
       setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
- 	  setBounds(450, 75, 480, 400);
+ 	  setBounds(450, 75, 480, 420);
       setTitle("Registrar Nuevo Proveedor");
       setFont(new Font("Century Gothic", Font.BOLD, 18));
       contentPane = new JPanel();
@@ -56,30 +56,37 @@ public class VentanaAgregarProveedor extends JFrame{
 	  contentPane.setLayout(null);
 		
 	  labelNombre = new JLabel("Nombre(s):");
-	  labelNombre.setBounds(24, 50, 130, 15);
+	  labelNombre.setFont(new Font("Century Gothic", Font.BOLD, 15));
+	  labelNombre.setBounds(24, 50, 130, 20);
 	  contentPane.add(labelNombre);
     		
 	  labelApellidoP = new JLabel("Apellido Paterno:");
-	  labelApellidoP.setBounds(24, 95, 130, 15);
+	  labelApellidoP.setFont(new Font("Century Gothic", Font.BOLD, 15));
+	  labelApellidoP.setBounds(24, 95, 150, 20);
 	  contentPane.add(labelApellidoP);
     	
 	  labelApellidoM = new JLabel("Apellido Materno:");
-	  labelApellidoM.setBounds(24, 140, 130, 15);
+	  labelApellidoM.setFont(new Font("Century Gothic", Font.BOLD, 15));
+	  labelApellidoM.setBounds(24, 140, 140, 20);
 	  contentPane.add(labelApellidoM);
     		
 	  labelTelefono = new JLabel("Numero de Telefono:");
-	  labelTelefono.setBounds(24, 185, 140, 15);
+	  labelTelefono.setFont(new Font("Century Gothic", Font.BOLD, 15));
+	  labelTelefono.setBounds(24, 185, 160, 20);
 	  contentPane.add(labelTelefono);
     		
 	  labelCelular = new JLabel("Numero de Celular:");
-	  labelCelular.setBounds(24, 230, 130, 15);
+	  labelCelular.setFont(new Font("Century Gothic", Font.BOLD, 15));
+	  labelCelular.setBounds(24, 230, 150, 20);
 	  contentPane.add(labelCelular);
     		
 	  labelDetalleP = new JLabel("Detalle de Producto:");
-	  labelDetalleP.setBounds(24, 275, 130, 15);
+	  labelDetalleP.setFont(new Font("Century Gothic", Font.BOLD, 15));
+	  labelDetalleP.setBounds(24, 275, 160, 20);
 	  contentPane.add(labelDetalleP);
 
 	  botonRegistrar = nuevoBoton(300, 340, "Registrar");
+	  botonRegistrar.setFont(new Font("Century Gothic", Font.PLAIN, 18));
 	  botonRegistrar.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
     			botonAgregarActionPerformed(evt);
@@ -88,30 +95,37 @@ public class VentanaAgregarProveedor extends JFrame{
 	  contentPane.add(botonRegistrar);
     		
 	  textNombre = new JTextField();
-	  textNombre.setBounds(180, 50, 130, 20);
+	  textNombre.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+	  textNombre.setBounds(180, 50, 150, 20);
 	  contentPane.add(textNombre);
     		
 	  textApellidoP = new JTextField();
-	  textApellidoP.setBounds(180, 95, 130, 20);
+	  textApellidoP.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+	  textApellidoP.setBounds(180, 95, 150, 20);
 	  contentPane.add(textApellidoP);
     		
 	  textApellidoM= new JTextField();
-	  textApellidoM.setBounds(180, 140, 130, 20);
+	  textApellidoM.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+	  textApellidoM.setBounds(180, 140, 150, 20);
 	  contentPane.add(textApellidoM);
     		
 	  textTelefono = new JTextField();
-	  textTelefono.setBounds(180, 185, 130, 20);
+	  textTelefono.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+	  textTelefono.setBounds(180, 185, 150, 20);
 	  contentPane.add(textTelefono);
     		
 	  textCelular = new JTextField();
-	  textCelular.setBounds(180, 230, 130, 20);
+	  textCelular.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+	  textCelular.setBounds(180, 230, 150, 20);
 	  contentPane.add(textCelular);
     		
       textDetalleP = new JTextField();
-      textDetalleP.setBounds(180, 275, 130, 20);
+      textDetalleP.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+      textDetalleP.setBounds(180, 275, 150, 20);
       contentPane.add(textDetalleP);		
 
       botonCancelar = nuevoBoton(50, 340, "Cancelar");
+      botonCancelar.setFont(new Font("Century Gothic", Font.PLAIN, 18));
       botonCancelar.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 			  int resultado = JOptionPane.showConfirmDialog(null, "Esta Seguro?","Confirmar", JOptionPane.YES_NO_CANCEL_OPTION);

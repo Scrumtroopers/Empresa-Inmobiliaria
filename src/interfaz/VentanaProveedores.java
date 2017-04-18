@@ -1,5 +1,4 @@
 package interfaz;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,18 +12,20 @@ import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class VentanaProveedores extends JFrame{
 
+	public static VentanaProveedores ventana;
 	private JPanel contentPane;
 	private JTable tablaProveedores;
 	private ModeloTabla modelo;
 	private JLabel titulo;
 	private JButton botonNuevoProveedor;
-	
+	 
 	public VentanaProveedores(String textoTitulo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -51,8 +52,10 @@ public class VentanaProveedores extends JFrame{
 		botonNuevoProveedor = nuevoBoton(510, 411, "Nuevo Proveedor");
 		botonNuevoProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaAgregarProveedor prov = new VentanaAgregarProveedor();
-        			prov.setVisible(true); 
+				if(VentanaAgregarProveedor.ventana != null && VentanaAgregarProveedor.ventana.isVisible())
+					VentanaAgregarProveedor.ventana.setVisible(false);
+				VentanaAgregarProveedor.ventana = new VentanaAgregarProveedor();
+				VentanaAgregarProveedor.ventana.setVisible(true);
 			}
 		 });
 		contentPane.add(botonNuevoProveedor);
