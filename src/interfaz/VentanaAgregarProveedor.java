@@ -129,7 +129,8 @@ public class VentanaAgregarProveedor extends JFrame{
       botonCancelar.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 			  int resultado = JOptionPane.showConfirmDialog(null, "Esta Seguro?","Confirmar", JOptionPane.YES_NO_CANCEL_OPTION);
-			  if (resultado == JOptionPane.YES_OPTION || resultado == JOptionPane.CANCEL_OPTION) System.exit(0);
+			  if (resultado == JOptionPane.YES_OPTION || resultado == JOptionPane.CANCEL_OPTION)
+				  setVisible(false);
 		  }
 	  });
 	  contentPane.add(botonCancelar);
@@ -137,13 +138,22 @@ public class VentanaAgregarProveedor extends JFrame{
    
    private void botonAgregarActionPerformed(ActionEvent evt) {
 		Proveedor prov = new Proveedor(textNombre.getText(), textApellidoP.getText(),
-				textApellidoM.getText(),Integer.parseInt(textTelefono.getText()),
-				Integer.parseInt(textCelular.getText()),textDetalleP.getText());
+				textApellidoM.getText(),getNumero(textTelefono),
+				getNumero(textCelular),textDetalleP.getText());
 		BD.bd.guardarProveedor(prov);
 		JOptionPane.showMessageDialog(null, "REGISTRO SATISFACTORIAMENTE", " ", JOptionPane.INFORMATION_MESSAGE);
 		setVisible(false);
 	}
    
+   public int getNumero(JTextField value){
+		int numero=0;
+		String num = value.getText();		
+	     try {numero = Integer.parseInt(num);
+		
+	     } catch( Exception e){
+	    	 System.out.println("Valor incorrecto");
+	     }
+	     return numero;     
+	}
+   
 }
-
-
