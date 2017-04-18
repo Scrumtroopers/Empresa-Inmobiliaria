@@ -43,8 +43,7 @@ public class VistaFormularioDatosCliente extends JFrame  {
 	private JButton guardar;
 	private Pedido pedido;
 	
-	public VistaFormularioDatosCliente(Pedido pedido){
-		this.pedido = pedido;
+	public VistaFormularioDatosCliente(){
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(450, 75, 580, 600);
@@ -148,6 +147,10 @@ public class VistaFormularioDatosCliente extends JFrame  {
 			}
 		});
 		contentPane.add(guardar);
+	}
+	
+	public Pedido getPedido(){
+		return pedido;
 	}
 
 	private void GuardarInformacionCliente() {
