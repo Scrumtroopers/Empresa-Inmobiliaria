@@ -25,15 +25,6 @@ public class VentanaProveedores extends JFrame{
 	private ModeloTabla modelo;
 	private JLabel titulo;
 	private JButton botonNuevoProveedor;
-	
-	 public static void main(String[] args) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					VentanaProveedores.ventana = new VentanaProveedores("TITLE");
-					VentanaProveedores.ventana.setVisible(true);
-				}
-			});
-		}
 	 
 	public VentanaProveedores(String textoTitulo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
