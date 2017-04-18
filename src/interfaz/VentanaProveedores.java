@@ -30,24 +30,13 @@ public class VentanaProveedores extends JFrame{
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					Object[][] datos = new Object[][] {
-						{"Pepe", "Rodriguez", "Sanchez","123123", "112233", "especificaciones"},
-						{"Miguel",  "Antonio", "Marcos", "987987","998877", "espicificaciones"},
-					};
-					String[] nombresColumnas = new String[] {
-							"Nombre", "Apellido Paterno", "Apellido Materno", "Telefono", "Celular", "Detalle Producto"
-						};
-					VentanaProveedores frame = new VentanaProveedores(datos, nombresColumnas, "Lista de Proveedores");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				VentanaProveedores frame = new VentanaProveedores("Lista de Proveedores");
+				frame.setVisible(true);
 			}
 		});
 	}
 	
-	public VentanaProveedores(Object[][] datos, String[] nombresColumnas, String textoTitulo) {
+	public VentanaProveedores(String textoTitulo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 680, 480);
@@ -60,42 +49,31 @@ public class VentanaProveedores extends JFrame{
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		titulo.setBounds(10, 11, 654, 30);
-		
 		contentPane.add(titulo);
+		
 		tablaProveedores = new JTable();
 		tablaProveedores.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		tablaProveedores.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		
-		// UTILIZAR SOLO PARA PROBAR MAIN()
-		modelo = new ModeloTabla(datos, nombresColumnas);
-		
-		/* UTILIZAR EN PROGRAMA
-		modelo = new ModeloTabla(BD.bd.getAlamacenes()); 
-		*/
-		
+		modelo = new ModeloTabla(BD.bd.getProveedores()); 
 		tablaProveedores.setModel(modelo);
 		tablaProveedores.setBounds(10, 52, 654, 311);
 		JScrollPane scrollPane = new JScrollPane(tablaProveedores);
 		scrollPane.setBounds(10, 52, 654, 348);
 		contentPane.add(scrollPane);
 		
+		
 		botonNuevoProveedor = nuevoBoton(510, 411, "Nuevo Proveedor");
 		botonNuevoProveedor.addActionListener(new ActionListener() {
-			 @Override
-	            public void actionPerformed(ActionEvent e) {
-	                SwingUtilities.invokeLater(new Runnable() {
-	                    @Override
-	                    public void run() {
-	                        VentanaAgregarProveedor dialog = new VentanaAgregarProveedor(VentanaProveedores.this);
-	                        //retorna proveedor desde JDialog
-	                        Proveedor prov = dialog.getProveedor();
-	                        // necesitar llamar a actualizarTabla() y que se vean los cambios
-	                    }
-	                });
-	            }
-	        });
-		
+			public void actionPerformed(ActionEvent e) {
+				agregarProveedor();
+			}
+		 });
 		contentPane.add(botonNuevoProveedor);
+	}
+	
+	private void agregarProveedor() {
+		VentanaAgregarProveedor prov = new VentanaAgregarProveedor();
+        prov.setVisible(true); 
 	}
 	
 	private JButton nuevoBoton(int x, int y, String txt){
